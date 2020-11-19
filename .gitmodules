@@ -1,0 +1,3 @@
+[submodule "DataShell"]
+	path = DataShell
+	url = https://github.com/RoderickDevs/DataShell.git
