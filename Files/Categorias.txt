@@ -1,0 +1,12 @@
+Comedia
+Accion
+DramaySuspenso
+Crimen
+Romance
+Aventura
+Terror
+Musical
+CienciaFiccion
+Guerra
+Infantil
+
