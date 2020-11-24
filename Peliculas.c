@@ -1,8 +1,16 @@
 #include "Peliculas.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
-  vista_Menu();
+  if(argc == 2 && (strcmp(argv[1],"-new"))==0)
+  {  
+    vista_Menu(1);
+  }
+
+  else
+  {
+    vista_Menu(0);
+  }
 
   return 0;
 }

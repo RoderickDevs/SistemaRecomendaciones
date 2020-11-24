@@ -53,14 +53,15 @@ typedef struct num_lineas{
  * determinadas en momentos adecuadas para la continuidad del programa.
  *
  * @params
- *      void
+ *      new_file (int):
+         Este valor determina si se usarà una UserDB existente o si crearà una nueva mediante el comando '-new'
         
  * @returns
         none
 */
 
 
-EXTERN void controlador_Proceso(void);
+EXTERN void controlador_Proceso(int new_file);
 
 
 /*
@@ -69,14 +70,15 @@ EXTERN void controlador_Proceso(void);
  * 
  *
  * @params
- *      void
+ *      new_file (int):
+         Este valor determina si se usarà una UserDB existente o si crearà una nueva mediante el comando '-new'
         
  * @returns
         none
 */
 
 
-EXTERN void vista_Menu(void);
+EXTERN void vista_Menu(int new_file);
 
 
 /*
@@ -96,6 +98,25 @@ EXTERN void vista_Menu(void);
 
 
 EXTERN float * modelo_IniciaUserDB(size_t columnas, float * buffer);
+
+
+/*
+ *
+ * La funcion modelo_ImprimeUserDB crearà un archivo CSV con los datos en la matriz de Afinidades.
+ * 
+ *
+ * @params
+ *      columnas (size_t):
+         tamaño de columnas para imprimir la matriz en el archivo
+ *      Afinidades[] (float *)
+         Matriz que se imprimirà en el archivo .csv
+        
+ * @returns
+        array con los valores aleatorios
+*/
+
+
+EXTERN void modelo_ImprimeUserDB(float * Afinidades[], size_t filas, size_t columnas);
 
 
 /*
@@ -127,7 +148,7 @@ EXTERN void modelo_DeterminaTamano(TAMANO * dimensiones);
 */
 
 
-EXTERN FILE * modelo_AbreArchivo(char * nombre_archivo);
+EXTERN FILE * modelo_AbreArchivo(char * nombre_archivo, char * modo);
 
 
 /*
@@ -147,6 +168,23 @@ EXTERN FILE * modelo_AbreArchivo(char * nombre_archivo);
 
 
 EXTERN size_t modelo_RecorreTXT(FILE * archivo);
+
+
+/*
+ *
+ * La funciòn DataShell() realiza las funciones previamente realizadas en la practica del DataShell
+ * 
+ *
+ * @params
+ *      archivo (char *):
+         archivo de dònde obtener los datos para llenar las matrices.
+        
+ * @returns
+        numero de columnas/filas.
+*/
+
+
+EXTERN void DataShell(char * archivo);
 
 
 /*

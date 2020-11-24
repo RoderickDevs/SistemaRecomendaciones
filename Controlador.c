@@ -1,40 +1,43 @@
 #include "Peliculas.h"
 
-void controlador_Proceso()
+void controlador_Proceso(int new_file)
 {
   int i, j;
   TAMANO * dimensiones = NULL;
   float * data_random = NULL;
   float * float_ptr = NULL;
-  
-  /*Creamos un espacio de memoria en donde guardaremos las dimensiones de la matriz que crearemos.*/
-  dimensiones = malloc(sizeof(TAMANO));
 
-  /*Calculamos dichas dimensiones con nuestra funciòn*/
-  modelo_DeterminaTamano(dimensiones);
-  
-  float * Afinidades[dimensiones->filas];
 
-  for(i = 0;i < dimensiones->filas;i++)
+  if(new_file == 1)
   {
-    Afinidades[i] = modelo_IniciaUserDB(dimensiones->columnas, data_random);
-
-    free(data_random);
-  }
-
-  /*Comprobaciòn para ver si la matriz esta saliendo bien.*/
-  for(i=0 ; i<dimensiones->filas ; i++)
-    {
-      float_ptr = Afinidades[i];
-      
-      for(j=0 ; j < dimensiones->columnas; j++)
+    
+    /*Creamos un espacio de memoria en donde guardaremos las dimensiones de la matriz que crearemos.*/
+    dimensiones = malloc(sizeof(TAMANO));
+    
+    /*Calculamos dichas dimensiones con nuestra funciòn*/
+    modelo_DeterminaTamano(dimensiones);
+    
+    float * Afinidades[dimensiones->filas];
+    
+    for(i = 0;i < dimensiones->filas;i++)
       {
-	printf("%.1f ",float_ptr[j]);
+	Afinidades[i] = modelo_IniciaUserDB(dimensiones->columnas, data_random);
+	
+	free(data_random);
       }
 
-      printf("\n");
-    }
+    modelo_ImprimeUserDB(Afinidades, dimensiones->filas, dimensiones->columnas);
+    
+    /*Liberamos la memoria que usamos para la creaciòn de la matriz inicial.*/
+    free(dimensiones);
+  }
 
-  /*Liberamos la memoria que usamos para la creaciòn de la matriz inicial.*/
-  free(dimensiones);
+  else if(new_file == 0)
+  {
+    DataShell("./Files/ContentDB.csv");
+    printf("\n");
+    DataShell("./Files/UserDB.csv");
+    printf("\n");
+    DataShell("./Files/RankingDB.csv");
+  }  
 }

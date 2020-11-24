@@ -1,6 +1,6 @@
 #include "Peliculas.h"
 
-void vista_Menu(void)
+void vista_Menu(int new_file)
 {
   system("clear");
   printf("\n\tBienvenido al Sistema de Recomendaciòn de Pelìculas\n\n");
@@ -8,7 +8,7 @@ void vista_Menu(void)
   printf("Presione ENTER para continuar...");
   getchar();
 
-  controlador_Proceso();
+  controlador_Proceso(new_file);
 }
 
 void vista_ErrorAperturaArchivo(void)
