@@ -120,3 +120,21 @@ void modelo_CreaUserDB(TAMANO * dimensiones)
   
   modelo_ImprimeUserDB(Afinidades, dimensiones->filas, dimensiones->columnas);
 }
+
+float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index)
+{
+  int i;
+  float * ptr = NULL;
+  float prediccion = 0;
+
+  float temp;
+
+  ptr = Q_item->Datos[index];
+
+  for(i = 0;i < Q_item->filas;i++)
+  {
+    prediccion = prediccion + (P_user[i] * (Q_item->Datos[i][index]));
+  }
+
+  return prediccion;
+}

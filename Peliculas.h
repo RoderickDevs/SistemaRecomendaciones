@@ -109,6 +109,27 @@ EXTERN float * modelo_IniciaUserDB(size_t columnas, float * buffer);
 
 /*
  *
+ * La funcion modelo_Prediccion calcula el intento inicial entre P[user] y Q[item].
+ * 
+ *
+ * @params
+ *      Q_Item (MATRIZ *):
+         ContentDB
+ *      P_user (float *):
+         Arreglo con las afinidades del usuario dado por un contador.
+ *      index (int):
+         ìndice de la pelìcula que se està analizando.
+        
+ * @returns
+        valor del intento inicial
+*/
+
+
+EXTERN float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index);
+
+
+/*
+ *
  * La funcion modelo_ImprimeUserDB crearà un archivo CSV con los datos en la matriz de Afinidades.
  * 
  *

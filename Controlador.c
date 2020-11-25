@@ -2,9 +2,10 @@
 
 void controlador_Proceso(int new_file)
 {
-  int i, j;
+  int i, j, index = 0;
   TAMANO * dimensiones = NULL;
   float * float_ptr = NULL;
+  float prediccion;
 
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
@@ -30,9 +31,17 @@ void controlador_Proceso(int new_file)
   DataShell("./Files/UserDB.csv",User);
   DataShell("./Files/RankingDB.csv",Ranking);
 
+  /*Comenzamos el aprendizaje*/
+  for(i = 0;i < User->filas ;i++)
+  {
+    for(index = 0; index < Content->columnas ; index++)
+    {
+      prediccion = modelo_Prediccion(User->Datos[i],Content,index);
+      printf("%f\n",prediccion);
+    }
 
-  
-  
+    printf("\n");
+  }
 
   free(Content);
   free(User);
