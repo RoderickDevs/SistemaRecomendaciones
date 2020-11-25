@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Peliculas.h"
 
 /*
 * Application specific headers required by the following declarations
@@ -72,7 +73,7 @@ EXTERN void vista_MenuDS(void);
 */
 
 
-EXTERN void controlador_ProcesoDS(char * archivo);
+EXTERN void controlador_ProcesoDS(char * archivo, MATRIZ * Matriz);
 
 
 /*

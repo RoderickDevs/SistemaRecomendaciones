@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 /*
 * Application specific headers required by the following declarations
@@ -39,6 +40,12 @@ typedef struct num_lineas{
   size_t columnas;
   size_t filas;
 }TAMANO;
+
+typedef struct matriz_struct{
+  float * Datos[BUFSIZ];
+  size_t columnas;
+  size_t filas;
+}MATRIZ;
 
 
 /* Global variables declarations. */
@@ -172,6 +179,23 @@ EXTERN size_t modelo_RecorreTXT(FILE * archivo);
 
 /*
  *
+ * La funcion modelo_UserDB crea un archivo con la nueva matriz de afinidades de los usuarios
+ * 
+ *
+ * @params
+ *      dimensiones (TAMANO *)
+         variable para determinar los tamaños de la matriz nueva
+        
+ * @returns
+        none
+*/
+
+
+EXTERN void modelo_CreaUserDB(TAMANO * dimensiones);
+
+
+/*
+ *
  * La funciòn DataShell() realiza las funciones previamente realizadas en la practica del DataShell
  * 
  *
@@ -184,7 +208,7 @@ EXTERN size_t modelo_RecorreTXT(FILE * archivo);
 */
 
 
-EXTERN void DataShell(char * archivo);
+EXTERN void DataShell(char * archivo, MATRIZ * Matriz);
 
 
 /*

@@ -1,7 +1,7 @@
 #include "DataShell.h"
 #include "Peliculas.h"
 
-void DataShell (char * archivo)
-{
-  controlador_ProcesoDS(archivo);
+void DataShell (char * archivo, MATRIZ * Matriz)
+{ 
+  controlador_ProcesoDS(archivo, Matriz);
 }

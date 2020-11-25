@@ -4,9 +4,11 @@ void controlador_Proceso(int new_file)
 {
   int i, j;
   TAMANO * dimensiones = NULL;
-  float * data_random = NULL;
   float * float_ptr = NULL;
 
+  MATRIZ * Content = malloc(sizeof(MATRIZ));
+  MATRIZ * User = malloc(sizeof(MATRIZ));
+  MATRIZ * Ranking = malloc(sizeof(MATRIZ));
 
   if(new_file == 1)
   {
@@ -16,28 +18,23 @@ void controlador_Proceso(int new_file)
     
     /*Calculamos dichas dimensiones con nuestra funciòn*/
     modelo_DeterminaTamano(dimensiones);
-    
-    float * Afinidades[dimensiones->filas];
-    
-    for(i = 0;i < dimensiones->filas;i++)
-      {
-	Afinidades[i] = modelo_IniciaUserDB(dimensiones->columnas, data_random);
-	
-	free(data_random);
-      }
 
-    modelo_ImprimeUserDB(Afinidades, dimensiones->filas, dimensiones->columnas);
+    modelo_CreaUserDB(dimensiones);
     
     /*Liberamos la memoria que usamos para la creaciòn de la matriz inicial.*/
     free(dimensiones);
   }
 
-  else if(new_file == 0)
-  {
-    DataShell("./Files/ContentDB.csv");
-    printf("\n");
-    DataShell("./Files/UserDB.csv");
-    printf("\n");
-    DataShell("./Files/RankingDB.csv");
-  }  
+  /*Obtenemos los datos de las matrices que se necesitaran para el proceso de aprendizaje*/
+  DataShell("./Files/ContentDB.csv",Content);
+  DataShell("./Files/UserDB.csv",User);
+  DataShell("./Files/RankingDB.csv",Ranking);
+
+
+  
+  
+
+  free(Content);
+  free(User);
+  free(Ranking);
 }

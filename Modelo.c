@@ -61,13 +61,15 @@ float * modelo_IniciaUserDB(size_t columnas, float * buffer)
   float temp_f;
   
   buffer = malloc(sizeof(float)*columnas);
-
+  
   for(i = 0;i < columnas;i++)
   {
-   temp = rand() % 11;
-   temp_f = (float)temp/10;
    
-   buffer[i] = temp_f;
+    temp = rand() % 11;
+    
+    temp_f = (float)temp/10;
+    
+    buffer[i] = temp_f;
   }
 
   return buffer;
@@ -101,4 +103,20 @@ void modelo_ImprimeUserDB(float * Afinidades[], size_t filas, size_t columnas)
   }
 
   fclose(archivo_imprimir);
+}
+
+void modelo_CreaUserDB(TAMANO * dimensiones)
+{
+  int i;
+  float * Afinidades[dimensiones->filas];
+  float * data_random;
+  
+  for(i = 0;i < dimensiones->filas;i++)
+  {
+    Afinidades[i] = modelo_IniciaUserDB(dimensiones->columnas, data_random);
+    
+    free(data_random);
+  }
+  
+  modelo_ImprimeUserDB(Afinidades, dimensiones->filas, dimensiones->columnas);
 }
