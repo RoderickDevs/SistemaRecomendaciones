@@ -138,3 +138,19 @@ float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index)
 
   return prediccion;
 }
+
+int modelo_ValidaOpcion(char * opcion)
+{
+  int i;
+  int not_digit = 0;
+
+  for(i = 0;i < strlen(opcion);i++)
+  {
+    if(opcion[i] < '0' || opcion[i] > '9')
+    {
+      not_digit = 1;
+    }
+  }
+
+  return not_digit;
+}
