@@ -68,7 +68,7 @@ typedef struct matriz_struct{
 */
 
 
-EXTERN void controlador_Proceso(int new_file);
+EXTERN void controlador_Proceso(int new_file, char * opcion);
 
 
 /*
@@ -165,6 +165,21 @@ EXTERN void modelo_DeterminaTamano(TAMANO * dimensiones);
 
 /*
  *
+ * La funcion  modelo_ValidaOpcion valida si un string solo contiene valores nùmericos.
+ *
+ * @params
+ *      opcion (char *)
+        
+ * @returns
+        none
+*/
+
+
+EXTERN int modelo_ValidaOpcion(char * opcion);
+
+
+/*
+ *
  * La funcion modelo_AbreArchivo, abrirà y regresarà el pointer a un file, asì mismo, validarà si la apertura fue correcta o no,
  * indicando si exitio algùn problema.
  *
@@ -244,6 +259,20 @@ EXTERN void DataShell(char * archivo, MATRIZ * Matriz);
 
 
 EXTERN void vista_ErrorAperturaArchivo(void);
+
+
+/*
+ *
+ * La funcion vista_ErrorEntrada mostarà un mensaje para cuando la entrada en el menù es incorrecta.
+ *
+ * @params
+ *     none
+ * @returns
+        none
+*/
+
+
+EXTERN void vista_ErrorEntrada(int new_file);
 
 
 
