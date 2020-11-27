@@ -1,10 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "Error.h"
 
-void controlador_errores(double error);
-double controlador_errorpromedio();
+//void controlador_errores(double error);
+//double controlador_errorpromedio();
 
-void controlador_errores(double error){
+void controlador_errores(float error){
     
     FILE *fp;
 
@@ -16,10 +15,10 @@ void controlador_errores(double error){
 
 }
 
-double controlador_errorpromedio(){
+float controlador_errorpromedio(){
 
-    double promedio=0;
-    double nerror=0;
+    float promedio=0;
+    float nerror=0;
     int contador = 0;
     FILE *fp;
 
@@ -27,7 +26,7 @@ double controlador_errorpromedio(){
 
     while (fscanf(fp, "%lf\n", &nerror) == 1)
     {
-        printf("\n- %lf", nerror);
+        printf("\n- %f", nerror);
         promedio = promedio + nerror;
         contador++;
     }
