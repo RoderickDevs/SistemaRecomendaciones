@@ -1,9 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "Optimizacion.h"
 
-
-float *modelo_optimizacion_content(float *user, float *content, size_t size, float n, float riu);
-float *modelo_optimizacion_user(float *user, float *content, size_t size, float n, float riu);
+//float *modelo_optimizacion_content(float *user, float *content, size_t size, float n, float riu);
+//float *modelo_optimizacion_user(float *user, float *content, size_t size, float n, float riu);
 
 float *modelo_optimizacion_content(float *user, float *content, size_t size, float n, float riu){
 
