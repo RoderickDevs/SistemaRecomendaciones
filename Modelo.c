@@ -1,4 +1,5 @@
 #include "Peliculas.h"
+#include <math.h>
 
 void modelo_DeterminaTamano(TAMANO * dimensiones)
 {
@@ -124,12 +125,9 @@ void modelo_CreaUserDB(TAMANO * dimensiones)
 float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index)
 {
   int i;
-  float * ptr = NULL;
   float prediccion = 0;
 
   float temp;
-
-  ptr = Q_item->Datos[index];
 
   for(i = 0;i < Q_item->filas;i++)
   {
@@ -153,4 +151,14 @@ int modelo_ValidaOpcion(char * opcion)
   }
 
   return not_digit;
+}
+
+float modelo_Error(float * prediccion, MATRIZ * Rating, int user, int item)
+{
+  float Error = 0;
+
+  /*Calculamos el error*/
+  Error =  pow((Rating->Datos[user][item] - (*prediccion)),2) * (0.5);
+
+  return Error;
 }

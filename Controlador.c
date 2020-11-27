@@ -5,10 +5,11 @@ void controlador_Proceso(int new_file, char * opcion)
 {
   int validacion_num;
   int num_opcion;
-  int i, j, index = 0;
+  int i, j, index = 0,user;
   TAMANO * dimensiones = NULL;
   float * float_ptr = NULL;
   float prediccion;
+  float error;
 
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
@@ -67,21 +68,33 @@ void controlador_Proceso(int new_file, char * opcion)
        
       /*El siguiente bloque de còdigo serà cuando el usuario quiera hacer que el algoritmo aprenda.*/
       /*Comenzamos el aprendizaje*/
-      for(i = 0;i < User->filas ;i++)
-	{
-	  for(index = 0; index < Content->columnas ; index++)
-	    {
-	      prediccion = modelo_Prediccion(User->Datos[i],Content,index);
-	      printf("%f\n",prediccion);
-	    }
+      for(user = 0;user < User->filas ;user++)
+	    { 
+	      for(index = 0; index < Content->columnas ; index++)
+	      {
+          if(Ranking->Datos[user][index] != 0)
+          {
+	          prediccion = modelo_Prediccion(User->Datos[i],Content,index);
+
+            error = modelo_Error(&prediccion,Ranking,user,index);
+
+            /*Hacer traspuesta de Content[index].*/
+
+            /*Optimizaciòn de user y content.*/
+
+            /*Agregar el error al archivo.*/
+          }
+
+          else if(Ranking->Datos[user][index] == 0)
+          {
+            /*La pelìcula no fue vista.*/
+          }
+	      }
 	  
-	  printf("\n");
-	}
+	      printf("\n");
+	    }
       /*Aqui termina el proceso de aprendizaje*/
-      
-      free(Content);
-      free(User);
-      free(Ranking);
+
     }//if de opciòn 3
 
     else if(num_opcion == 4)
@@ -98,5 +111,10 @@ void controlador_Proceso(int new_file, char * opcion)
     {
       printf("Peliculas similares.\n\n");
     }//if opciòn 6
+
+
+    free(Content);
+    free(User);
+    free(Ranking);
   }
 }
