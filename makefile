@@ -1,5 +1,5 @@
 Peliculas:Peliculas.o Modelo.o Vista.o Controlador.o DataShell.o controlador_Proceso.o modelo_Archivos.o modelo_sincomas.o modelo_Valida_Nombre.o vista_Errores.o modelo_Tokenizer.o modelo_Columnas.o modelo_Correcion_Nombre.o
-	gcc -o Peliculas Peliculas.o Modelo.o Vista.o Controlador.o DataShell.o controlador_Proceso.o modelo_Archivos.o modelo_sincomas.o modelo_Valida_Nombre.o vista_Errores.o modelo_Tokenizer.o modelo_Columnas.o modelo_Correcion_Nombre.o
+	gcc -o Peliculas Peliculas.o Modelo.o Vista.o Controlador.o DataShell.o controlador_Proceso.o modelo_Archivos.o modelo_sincomas.o modelo_Valida_Nombre.o vista_Errores.o modelo_Tokenizer.o modelo_Columnas.o modelo_Correcion_Nombre.o -lm
 
 Peliculas.o:Peliculas.c
 	gcc -c Peliculas.c

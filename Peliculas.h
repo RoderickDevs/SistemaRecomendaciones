@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 
 /*
 * Application specific headers required by the following declarations
@@ -126,6 +127,29 @@ EXTERN float * modelo_IniciaUserDB(size_t columnas, float * buffer);
 
 
 EXTERN float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index);
+
+
+/*
+ *
+ * La funcion modelo_Error calcula el error generado por la predicciòn del sistema.
+ * 
+ *
+ * @params
+ *      Rating (MATRIZ *):
+         RankingDB
+ *      P_user (float *):
+         Pointer que apunta al valor generado por el modulo de la prediccion.
+ *      index (int):
+         ìndice de la pelìcula que se està analizando;
+ *      user (int):
+         indice del usuario que se està analizando
+        
+ * @returns
+        valor del error
+*/
+
+
+EXTERN float modelo_Error(float * prediccion, MATRIZ * Rating,int user,int index);
 
 
 /*
