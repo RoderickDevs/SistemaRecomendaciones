@@ -189,6 +189,21 @@ EXTERN void modelo_DeterminaTamano(TAMANO * dimensiones);
 
 /*
  *
+ * La funcion modelo_ImprimeRanking imprimirà una representaciòn de la tabla RankingDB de los usuarios.
+ *
+ * @params
+ *      RankingDB (MATRIZ *)
+        
+ * @returns
+        none
+*/
+
+
+EXTERN void modelo_ImprimeRanking(MATRIZ * RankingDB);
+
+
+/*
+ *
  * La funcion  modelo_ValidaOpcion valida si un string solo contiene valores nùmericos.
  *
  * @params
@@ -253,6 +268,8 @@ EXTERN size_t modelo_RecorreTXT(FILE * archivo);
 
 EXTERN void modelo_CreaUserDB(TAMANO * dimensiones);
 
+EXTERN char * modelo_ObtenLinea(char * linea_leida, int index, char * nombre_archivo);
+
 
 /*
  *
@@ -296,7 +313,11 @@ EXTERN void vista_ErrorAperturaArchivo(void);
 */
 
 
-EXTERN void vista_ErrorEntrada(int new_file);
+EXTERN void vista_ErrorEntrada(int new_file, int retorno, char * despliegue);
+
+EXTERN void vista_RegresaMenu(int new_file);
+
+EXTERN char * vista_MenuDespliegue(void);
 
 
 

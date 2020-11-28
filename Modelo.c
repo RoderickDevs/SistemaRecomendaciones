@@ -162,3 +162,116 @@ float modelo_Error(float * prediccion, MATRIZ * Rating, int user, int item)
 
   return Error;
 }
+
+void modelo_ImprimeRanking(MATRIZ * RankingDB)
+{
+  int i,user=0,movie=0,ciclo=1;
+  FILE * UserNames, * MovieNames;
+
+  char * linea = NULL;
+  char * FileUsers = "./Files/UserNames.txt";
+  char * FileMovies = "./Files/MovieNames.txt";
+
+  char * Users[RankingDB->filas];
+  char * Movies[RankingDB->columnas];
+
+  /*Recorremos los archivos y guardamos su contenido en los arreglos que creamos*/
+  while (ciclo == 1)
+  {
+    Users[user] = modelo_ObtenLinea(linea,user,FileUsers);
+
+    user++;
+
+    free(linea);
+
+    if(user == RankingDB->filas)
+    {
+      ciclo = 0;
+    }
+  }
+
+  ciclo = 1;
+
+  while (ciclo == 1)
+  {
+    Movies[movie] = modelo_ObtenLinea(linea,movie,FileMovies);
+
+    movie++;
+
+    free(linea);
+
+    if(movie == RankingDB->columnas)
+    {
+      ciclo = 0;
+    }
+  }
+
+  system("clear");
+  printf("Peliculas en el sistema:\n\n");
+
+  for(i = 0;i < RankingDB->columnas; i++)
+  {
+    printf("#%d : %s\n",i+1,Movies[i]);
+  }
+
+  printf("\n\nUsuario.\t\t\t\t\t\t     Indice de pelìcula.\n\n\t\t\t");
+
+  for(i=1;i<=RankingDB->columnas;i++)
+  {
+    if(i<10)
+    {
+      printf(" %d  ",i);
+    }
+
+    else
+    {
+      printf("%d  ",i);
+    }
+  }
+  printf("\n\n\t\t\t\t\t\t\t\tCalificaciòn.\n\n\t\t\t");
+
+  printf("\n");
+  
+  for(user = 0; user < RankingDB->filas; user++)
+  {
+    printf("%s-----\t\t",Users[user]);
+
+    for(movie = 0; movie < RankingDB->columnas ; movie++)
+    {
+      if(RankingDB->Datos[user][movie] < 10)
+      {
+        printf(" %.0f  ",RankingDB->Datos[user][movie]);
+      }
+      else
+      {
+        printf("%.0f  ",RankingDB->Datos[user][movie]);
+      }
+      
+    }
+
+    printf("\n");
+  }
+
+  vista_RegresaMenu(0);
+}
+
+char * modelo_ObtenLinea(char * linea_leida, int index, char * nombre_archivo)
+{
+  int count = 0;
+  FILE * File;
+
+  linea_leida = malloc(sizeof(char)*BUFSIZ);
+
+  /*Abrimos los arhivos txt que contienen los nombres tanto de los usuarios como de las pelìculas*/
+  File= modelo_AbreArchivo(nombre_archivo,"r");
+
+  while(count <= index)
+  {
+    fscanf(File,"%[^\n]\n",linea_leida);
+    count++;
+  }
+
+  fclose(File);
+
+  return linea_leida;
+}
