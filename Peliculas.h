@@ -270,6 +270,11 @@ EXTERN void modelo_CreaUserDB(TAMANO * dimensiones);
 
 EXTERN char * modelo_ObtenLinea(char * linea_leida, int index, char * nombre_archivo);
 
+EXTERN void modelo_DespliegaUsuarios(MATRIZ * Ranking,char * opcion);
+
+EXTERN void modelo_DespliegaPeliculas(MATRIZ * Ranking,char * opcion);
+
+EXTERN float modelo_CalculaPromedio(MATRIZ * Ranking,int movie);
 
 /*
  *
@@ -315,7 +320,7 @@ EXTERN void vista_ErrorAperturaArchivo(void);
 
 EXTERN void vista_ErrorEntrada(int new_file, int retorno, char * despliegue);
 
-EXTERN void vista_RegresaMenu(int new_file);
+EXTERN void vista_RegresaMenu(int new_file, int retorno, char * opcion);
 
 EXTERN char * vista_MenuDespliegue(void);
 

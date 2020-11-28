@@ -80,7 +80,15 @@ void controlador_Proceso(int new_file, char * opcion)
         {
           if(num_opcion != 0)
           {
+            if(num_opcion == 1)
+            {
+              modelo_DespliegaUsuarios(Ranking,opcion);
+            }
 
+            if(num_opcion == 2)
+            {
+              modelo_DespliegaPeliculas(Ranking,opcion);
+            }
           }
 
           else if(num_opcion == 0)

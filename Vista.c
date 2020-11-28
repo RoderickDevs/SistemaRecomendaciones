@@ -11,7 +11,7 @@ void vista_Menu(int new_file)
   printf("\n\n\n\tEquipo 1. \n\tJesùs Enrique Domìnguez Barrios.\n\tRodrigo Garcìa Dìaz\n\n");
 
   printf("\n\n\t1.- Desplegar infomaraciòn de...");
-  printf("\n\t2.- Rating de pelìculas.");
+  printf("\n\t2.- Ranking de pelìculas.");
   printf("\n\t3.- Entrenar sistema.");
   printf("\n\n\n\t4.- Dar recomendaciòn.");
   printf("\n\t5.- Sugerencia de amigos.");
@@ -54,12 +54,23 @@ void vista_ErrorEntrada(int new_file, int retorno, char * despliegue)
   }
 }
 
-void vista_RegresaMenu(int new_file)
+void vista_RegresaMenu(int new_file, int retorno, char * opcion)
 {
-  printf("\n\n\tPresiona ENTER para regresar al menu...");
-  getchar();
+  if(retorno == 0)
+  {
+    printf("\n\n\tPresiona ENTER para regresar al menu...");
+    getchar();
 
-  vista_Menu(0);
+    vista_Menu(0);
+  }
+
+  if(retorno == 1)
+  {
+    printf("\n\n\tPresiona ENTER para regresar al menu anterior...");
+    getchar();
+
+    controlador_Proceso(0,opcion);
+  }
 }
 
 char * vista_MenuDespliegue(void)
