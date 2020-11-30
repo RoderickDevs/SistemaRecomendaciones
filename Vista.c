@@ -38,9 +38,15 @@ void vista_ErrorEntrada(int new_file, int retorno, char * despliegue)
   printf("\n\nHubo un error. Intente de nuevo.\n");
   printf("\n\tPosibles causas:\n");
   printf("\t> No ingrese caracteres en el menù inicial.\n");
-  printf("\t> El nùmero de la opciòn es incorrecta.\n\n");
+  printf("\t> El nùmero de la opciòn es incorrecta.\n");
 
-  printf("Presione ENTER para continuar...");
+  if (retorno == 2)
+  {
+    printf("\t> Ingrese un nùmero de Epocas superior a 100.\n\n");
+  }
+  
+
+  printf("\nPresione ENTER para continuar...");
   getchar();
 
   if(retorno == 0)
@@ -49,6 +55,11 @@ void vista_ErrorEntrada(int new_file, int retorno, char * despliegue)
   }
 
   if(retorno == 1)
+  {
+    controlador_Proceso(0,despliegue);
+  }
+
+  if(retorno == 2)
   {
     controlador_Proceso(0,despliegue);
   }
@@ -92,3 +103,16 @@ char * vista_MenuDespliegue(void)
   return opcion;
 }
 
+char * vista_MenuEpocas(void)
+{
+  char * numero = malloc(sizeof(char)*TAMANO);
+
+  system("clear");
+
+  printf("\n\n\t¿Ccon cuàntas EPOC desea entrenar el sistema?\n\n");
+  printf("\n\n\tNùmero de EPOCs: ");
+
+  fgets(numero,TAMANO,stdin);
+
+  return numero;
+}

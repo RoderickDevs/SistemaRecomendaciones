@@ -9,7 +9,7 @@ void controlador_errores(float error){
 
     fp = fopen("errores.er", "a");
 
-    fprintf(fp, "%lf\n", error);
+    fprintf(fp, "%f\n", error);
 
     fclose(fp);
 
