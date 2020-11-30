@@ -2,21 +2,27 @@
 #include "DataShell.h"
 #include "Error.h"
 #include "Optimizacion.h"
+#include <math.h>
 
 void controlador_Proceso(int new_file, char * opcion)
 {
   int validacion_num;
+  int validacion_epocas;
+
+  int EPOC = 0;
+  int EPOCS;
   int num_opcion;
   int i, j, index = 0,user;
   TAMANO * dimensiones = NULL;
   float * float_ptr = NULL;
+
   float prediccion;
-  float error;
-  float_ptr = malloc(sizeof(float)*BUFSIZ);
+  float error = 0;
 
   int peli=0;
 
-  char * opcion_despliegue;
+  char * opcion_despliegue = NULL;
+  char * numero_EPOC = NULL;
 
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
@@ -115,50 +121,65 @@ void controlador_Proceso(int new_file, char * opcion)
 
       else if(num_opcion == 3)
       { 
-        
-        /*El siguiente bloque de còdigo serà cuando el usuario quiera hacer que el algoritmo aprenda.*/
-        /*Comenzamos el aprendizaje*/
-        for(user = 0;user < User->filas ;user++)
-        { 
-          for(index = 0; index < Content->columnas ; index++)
+        numero_EPOC = vista_MenuEpocas();
+
+        modelo_Correccion_Nombre(numero_EPOC);
+
+        validacion_epocas = modelo_ValidaOpcion(numero_EPOC);
+
+        if(validacion_epocas == 0)
+        {
+          EPOCS = atoi(numero_EPOC);
+        }
+
+        if(validacion_epocas == 1 || EPOCS < 100)
+        {
+          vista_ErrorEntrada(0,2,opcion);
+        }
+
+        else if(validacion_epocas == 0)
+        {
+          float_ptr = malloc(sizeof(float)*Content->filas);
+
+          for(EPOC = 0; EPOC < EPOCS; EPOC++)
           {
+            printf("EPOC: %d\n",EPOC+1);
 
-            if(Ranking->Datos[user][index] != 0)
-            {
-              prediccion = modelo_Prediccion(User->Datos[i],Content,index);
-
-              error = modelo_Error(&prediccion,Ranking,user,index);
-
-              /*Hacer traspuesta de Content[index].*/
-              // for (pelicula = 0; pelicula < Content->columnas; pelicula++)
-              //{
-              //content_transposed = controlador_transpuesta(Content, pelicula,content_transposed);
-              /*asiginar n, yo hice la signacion n de manera manual.
-
-              /*Optimizaciòn de user y content.*/
-              for ( peli = 0; peli < Content->columnas; peli++)
+            for(user = 0;user < User->filas ;user++)
+            { 
+              for(index = 0; index < Content->columnas ; index++)
               {
-                
-                float_ptr[peli]= User->Datos[index][peli];
+                if(Ranking->Datos[user][index] != 0)
+                {
+                  prediccion = modelo_Prediccion(User->Datos[user],Content,index);
 
+                  error = pow((Ranking->Datos[user][index] - (prediccion)),2) * (0.5);
+
+                  for ( peli = 0; peli < Content->filas; peli++)
+                  {
+                    float_ptr[peli] = Content->Datos[peli][index];
+                  }
+
+                  /*Optimizaciòn de usuario*/
+                  User->Datos[user] = modelo_optimizacion_user(User->Datos[user],float_ptr, User->columnas, 0.1, Ranking->Datos[user][index]);
+
+                  /*Se guarda el error en el archivo*/
+                  controlador_errores(error);
+                }
+
+                else if (Ranking->Datos[user][index] == 0)
+                {
+                  /*La pelìcula no se ha visto*/
+                }
+                
               }
 
+              /*Determinar si el error creciò o disminuyò para actualizar n*/
               
-              User->Datos[user] = modelo_optimizacion_user(User->Datos[user],float_ptr, User->columnas, 0.1, Ranking->Datos[user][index]);
-
-              //}              
-
-              /*Agregar el error al archivo.*/
-              controlador_errores(error);
-            }
-
-            else if(Ranking->Datos[user][index] == 0)
-            {
-              /*La pelìcula no fue vista.*/
             }
           }
-      
-          printf("\n");
+
+          free(float_ptr);
         }
         /*Aqui termina el proceso de aprendizaje*/
 

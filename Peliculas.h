@@ -149,7 +149,7 @@ EXTERN float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index);
 */
 
 
-EXTERN float modelo_Error(float * prediccion, MATRIZ * Rating,int user,int index);
+EXTERN float modelo_Error(float * prediccion, MATRIZ * Rating, int user, int item);
 
 
 /*
@@ -323,6 +323,8 @@ EXTERN void vista_ErrorEntrada(int new_file, int retorno, char * despliegue);
 EXTERN void vista_RegresaMenu(int new_file, int retorno, char * opcion);
 
 EXTERN char * vista_MenuDespliegue(void);
+
+EXTERN char * vista_MenuEpocas(void);
 
 
 

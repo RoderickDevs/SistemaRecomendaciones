@@ -9,7 +9,7 @@ void controlador_errores(float error){
 
     fp = fopen("errores.er", "a");
 
-    fprintf(fp, "%lf\n", error);
+    fprintf(fp, "%f\n", error);
 
     fclose(fp);
 
@@ -24,7 +24,7 @@ float controlador_errorpromedio(){
 
     fp = fopen("errores.er", "r");
 
-    while (fscanf(fp, "%lf\n", &nerror) == 1)
+    while (fscanf(fp, "%f\n", &nerror) == 1)
     {
         printf("\n- %f", nerror);
         promedio = promedio + nerror;

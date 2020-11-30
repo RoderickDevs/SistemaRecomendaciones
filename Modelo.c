@@ -158,7 +158,7 @@ float modelo_Error(float * prediccion, MATRIZ * Rating, int user, int item)
   float Error = 0;
 
   /*Calculamos el error*/
-  Error =  pow((Rating->Datos[user][item] - (*prediccion)),2) * (0.5);
+  Error =  pow((Rating->Datos[0][0] - (*prediccion)),2) * (0.5);
 
   return Error;
 }
