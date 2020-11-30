@@ -12,7 +12,6 @@ void controlador_Proceso(int new_file, char * opcion)
   float * float_ptr = NULL;
   float prediccion;
   float error;
-  float_ptr = malloc(sizeof(float)*BUFSIZ);
 
   int peli=0;
 
@@ -115,6 +114,7 @@ void controlador_Proceso(int new_file, char * opcion)
 
       else if(num_opcion == 3)
       { 
+        float_ptr = malloc(sizeof(float)*Content->filas);
         
         /*El siguiente bloque de còdigo serà cuando el usuario quiera hacer que el algoritmo aprenda.*/
         /*Comenzamos el aprendizaje*/
@@ -136,12 +136,21 @@ void controlador_Proceso(int new_file, char * opcion)
               /*asiginar n, yo hice la signacion n de manera manual.
 
               /*Optimizaciòn de user y content.*/
-              for ( peli = 0; peli < Content->columnas; peli++)
+              for ( peli = 0; peli < Content->filas; peli++)
               {
                 
-                float_ptr[peli]= User->Datos[index][peli];
+                float_ptr[peli] = Content->Datos[peli][index];
 
               }
+
+              /*for ( peli = 0; peli < Content->filas; peli++)
+              {
+                
+                printf("%f\n",float_ptr[peli]);
+
+              }
+
+              printf("\n");*/
 
               
               User->Datos[user] = modelo_optimizacion_user(User->Datos[user],float_ptr, User->columnas, 0.1, Ranking->Datos[user][index]);
@@ -157,8 +166,6 @@ void controlador_Proceso(int new_file, char * opcion)
               /*La pelìcula no fue vista.*/
             }
           }
-      
-          printf("\n");
         }
         /*Aqui termina el proceso de aprendizaje*/
 
@@ -183,6 +190,7 @@ void controlador_Proceso(int new_file, char * opcion)
       free(Content);
       free(User);
       free(Ranking);
+      free(float_ptr);
     }
 
     else if(num_opcion == 0)

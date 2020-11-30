@@ -24,7 +24,7 @@ float controlador_errorpromedio(){
 
     fp = fopen("errores.er", "r");
 
-    while (fscanf(fp, "%lf\n", &nerror) == 1)
+    while (fscanf(fp, "%f\n", &nerror) == 1)
     {
         printf("\n- %f", nerror);
         promedio = promedio + nerror;
