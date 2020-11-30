@@ -1,5 +1,7 @@
 #include "Peliculas.h"
 #include "DataShell.h"
+#include "Error.h"
+#include "Optimizacion.h"
 
 void controlador_Proceso(int new_file, char * opcion)
 {
@@ -10,12 +12,16 @@ void controlador_Proceso(int new_file, char * opcion)
   float * float_ptr = NULL;
   float prediccion;
   float error;
+  float_ptr = malloc(sizeof(float)*BUFSIZ);
+
+  int peli=0;
 
   char * opcion_despliegue;
 
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
   MATRIZ * Ranking = malloc(sizeof(MATRIZ));
+
 
   /*Corregimos el problema de fgets con */
   modelo_Correccion_Nombre(opcion);
@@ -116,6 +122,7 @@ void controlador_Proceso(int new_file, char * opcion)
         { 
           for(index = 0; index < Content->columnas ; index++)
           {
+
             if(Ranking->Datos[user][index] != 0)
             {
               prediccion = modelo_Prediccion(User->Datos[i],Content,index);
@@ -123,10 +130,26 @@ void controlador_Proceso(int new_file, char * opcion)
               error = modelo_Error(&prediccion,Ranking,user,index);
 
               /*Hacer traspuesta de Content[index].*/
+              // for (pelicula = 0; pelicula < Content->columnas; pelicula++)
+              //{
+              //content_transposed = controlador_transpuesta(Content, pelicula,content_transposed);
+              /*asiginar n, yo hice la signacion n de manera manual.
 
               /*Optimizaciòn de user y content.*/
+              for ( peli = 0; peli < Content->columnas; peli++)
+              {
+                
+                float_ptr[peli]= User->Datos[index][peli];
+
+              }
+
+              
+              User->Datos[user] = modelo_optimizacion_user(User->Datos[user],float_ptr, User->columnas, 0.1, Ranking->Datos[user][index]);
+
+              //}              
 
               /*Agregar el error al archivo.*/
+              controlador_errores(error);
             }
 
             else if(Ranking->Datos[user][index] == 0)
