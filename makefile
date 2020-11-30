@@ -1,5 +1,5 @@
-Peliculas:Peliculas.o Modelo.o Vista.o Controlador.o DataShell.o controlador_Proceso.o modelo_Archivos.o modelo_sincomas.o modelo_Valida_Nombre.o vista_Errores.o modelo_Tokenizer.o modelo_Columnas.o modelo_Correcion_Nombre.o
-	gcc -o Peliculas Peliculas.o Modelo.o Vista.o Controlador.o DataShell.o controlador_Proceso.o modelo_Archivos.o modelo_sincomas.o modelo_Valida_Nombre.o vista_Errores.o modelo_Tokenizer.o modelo_Columnas.o modelo_Correcion_Nombre.o -lm
+Peliculas:Peliculas.o Modelo.o Vista.o Controlador.o DataShell.o controlador_Proceso.o modelo_Archivos.o modelo_sincomas.o modelo_Valida_Nombre.o vista_Errores.o modelo_Tokenizer.o modelo_Columnas.o modelo_Correcion_Nombre.o modelo_optcontent.o controlador_transpuesta.o controlador_errores.o
+	gcc -o Peliculas Peliculas.o Modelo.o Vista.o Controlador.o DataShell.o controlador_Proceso.o modelo_Archivos.o modelo_sincomas.o modelo_Valida_Nombre.o vista_Errores.o modelo_Tokenizer.o modelo_Columnas.o modelo_Correcion_Nombre.o modelo_optcontent.o controlador_transpuesta.o controlador_errores.o -lm
 
 Peliculas.o:Peliculas.c
 	gcc -c Peliculas.c
@@ -39,6 +39,15 @@ modelo_Columnas.o:modelo_Columnas.c
 
 modelo_Correcion_Nombre.o:modelo_Correcion_Nombre.c
 	gcc -c modelo_Correcion_Nombre.c
+
+modelo_optcontent.o:modelo_optcontent.c
+	gcc -c modelo_optcontent.c
+
+controlador_transpuesta.o:controlador_transpuesta.c
+	gcc -c controlador_transpuesta.c
+
+controlador_errores.o:controlador_errores.c
+	gcc -c controlador_errores.c
 
 clean:
 	rm *.o

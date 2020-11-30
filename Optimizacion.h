@@ -17,6 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "Peliculas.h"
+
 /*
 * Application specific headers required by the following declarations
 * (the implementation will import its specific dependencies):
@@ -96,6 +98,24 @@ EXTERN float *modelo_optimizacion_content(float *user, float *content, size_t si
 
 
 EXTERN float *modelo_optimizacion_user(float *user, float *content, size_t size, float n, float riu);
+
+
+/*
+ *
+ * La funcion controlador_transpuesta obtiene los nuevos verctores que convierten una  
+ * columna a su transpuesta. Regresa el vector de tipo float
+ *
+ * @params
+ *      matriz (*MATRIZ):
+         estrictura con matriz y dimensiones
+
+*      id (int):
+         indice del item o user que sera una constante;
+          
+ * @returns
+        *float
+*/
+EXTERN float *controlador_transpuesta(MATRIZ *matriz, int id, float *vector);
 
 
 #undef Optimizacion_IMPORT
