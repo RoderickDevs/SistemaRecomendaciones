@@ -158,18 +158,47 @@ char * vista_MenuRecomendacion(MATRIZ * Usuario, int modo)
 char * vista_MenuSugerencia(MATRIZ * Usuario)
 {
   char * linea = NULL;
-  char * nombres[Usuario->columnas];
+  char * nombres[Usuario->filas];
   char * opcion = malloc(sizeof(char)*TAMANO);
   FILE * names;
   int i;
 
   system("clear");
 
-  printf("\n\n\t¿Para quien es la sugerencia\n\n");
+  printf("\n\n\t¿Para quien es la sugerencia?\n\n");
 
   for(i = 0;i < Usuario->filas;i++)
   {
     nombres[i] = modelo_ObtenLinea(linea,i,"./Files/UserNames.txt");
+    printf("\t%d -> %s\n",i+1,nombres[i]);
+  }
+
+  printf("\n\n\t0 -> Regresar al menu principal.");
+
+  free(linea);
+
+  printf("\n\n\tIngrese el nùmero de usuario o el 0 para salir: ");
+
+  fgets(opcion,TAMANO,stdin);
+
+  return opcion;
+}
+
+char * vista_MenuPeliculas(MATRIZ * Contenido)
+{
+  char * linea = NULL;
+  char * nombres[Contenido->columnas];
+  char * opcion = malloc(sizeof(char)*TAMANO);
+  FILE * names;
+  int i;
+
+  system("clear");
+
+  printf("\n\n\t¿Peliculas similares a cual desea revisar?\n\n");
+
+  for(i = 0;i < Contenido->columnas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/MovieNames.txt");
     printf("\t%d -> %s\n",i+1,nombres[i]);
   }
 

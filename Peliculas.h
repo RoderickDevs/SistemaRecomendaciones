@@ -280,6 +280,8 @@ EXTERN void modelo_DotRecomendacion(MATRIZ * Ranking , float * usuario, MATRIZ *
 
 EXTERN void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char * opcion);
 
+EXTERN void modelo_DotSimilares(MATRIZ * Content, int movie, char * opcion);
+
 /*
  *
  * La funciòn DataShell() realiza las funciones previamente realizadas en la practica del DataShell
@@ -331,6 +333,8 @@ EXTERN char * vista_MenuDespliegue(void);
 EXTERN char * vista_MenuEpocas(void);
 
 EXTERN char * vista_MenuRecomendacion(MATRIZ * Usuario, int modo);
+
+EXTERN char * vista_MenuPeliculas(MATRIZ * COntenido);
 
 
 

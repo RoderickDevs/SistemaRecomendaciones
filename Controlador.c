@@ -10,12 +10,14 @@ void controlador_Proceso(int new_file, char * opcion)
   int validacion_epocas;
   int validacion_reco;
   int validacion_sugerencia;
+  int validacion_similares;
 
   int EPOC = 0;
   int EPOCS;
   int num_opcion;
   int user_reco;
   int sugerencia;
+  int similar_index;
 
   int i, j, index = 0,user;
   TAMANO * dimensiones = NULL;
@@ -30,6 +32,7 @@ void controlador_Proceso(int new_file, char * opcion)
   char * numero_EPOC = NULL;
   char * opcion_recomendacion = NULL;
   char * opcion_sugerencia = NULL;
+  char * opcion_similares = NULL;
 
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
@@ -275,10 +278,39 @@ void controlador_Proceso(int new_file, char * opcion)
 
       else if(num_opcion == 6)
       {
-        printf("Peliculas similares.\n\n");
+        opcion_similares = vista_MenuPeliculas(Content);
+
+        modelo_Correccion_Nombre(opcion_similares);
+
+        validacion_similares = modelo_ValidaOpcion(opcion_similares);
+
+        if(validacion_similares == 0)
+        {
+           similar_index = atoi(opcion_similares);
+        }
+
+        if(validacion_similares == 1 || (similar_index < 0|| similar_index > Content->columnas))
+        {
+          free(opcion_similares);
+          vista_ErrorEntrada(0,1,opcion);
+        }
+
+        else if(validacion_similares == 0 && (similar_index>= 0 || similar_index <= Content->columnas))
+        {
+          
+          if(similar_index!= 0)
+          {
+            modelo_DotSimilares(Content,similar_index-1,opcion);
+            free(opcion_similares);
+          }
+
+          else
+          {
+            free(opcion_similares);
+            vista_Menu(0);
+          }
+        }
       }//if opciòn 6
-
-
       free(Content);
       free(User);
       free(Ranking);

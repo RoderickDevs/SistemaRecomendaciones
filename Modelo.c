@@ -511,7 +511,7 @@ void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char * opcio
         dot_product = dot_product + (usuario[i] * User->Datos[u][i]);
       }
 
-      if(dot_product != 0)
+      if(dot_product >= 3 )
       {
         printf("\t'%s'\n",nombres[u]);
       }
@@ -523,3 +523,44 @@ void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char * opcio
 
   vista_RegresaMenu(0,1,opcion);
 } 
+
+void modelo_DotSimilares(MATRIZ * Content, int movie, char * opcion)
+{
+  system("clear");
+
+  int i,movie_index;
+  char * linea = NULL;
+  char * nombres[Content->columnas];
+
+  float dot_product = 0;
+
+  for(i = 0;i < Content->columnas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/MovieNames.txt");
+  }
+
+  free(linea);
+
+  printf("\n\n\t Peliculas similares a '%s':\n\n", nombres[movie]);
+
+  for(movie_index = 0;movie_index < Content->columnas;movie_index++)
+  {
+    if(movie_index != movie)
+    {
+      for(i = 0;i < Content->filas;i++)
+      {
+        dot_product = dot_product + (Content->Datos[i][movie] * Content->Datos[i][movie_index]);
+      }
+
+      if(dot_product > 2)
+      {
+        printf("\t'%s'\n",nombres[movie_index]);
+      }
+
+      dot_product = 0;
+
+    }
+  }
+
+  vista_RegresaMenu(0,1,opcion);
+}
