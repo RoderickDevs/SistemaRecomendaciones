@@ -276,6 +276,8 @@ EXTERN void modelo_DespliegaPeliculas(MATRIZ * Ranking,char * opcion);
 
 EXTERN float modelo_CalculaPromedio(MATRIZ * Ranking,int movie);
 
+EXTERN size_t modelo_DotRecomendacion(MATRIZ * Ranking , float * usuario, MATRIZ * Contenido, int user, char * opcion);
+
 /*
  *
  * La funciòn DataShell() realiza las funciones previamente realizadas en la practica del DataShell

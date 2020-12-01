@@ -439,3 +439,43 @@ float modelo_CalculaPromedio(MATRIZ * Ranking,int movie)
 
   return promedio;
 }
+
+size_t modelo_DotRecomendacion(MATRIZ * Ranking, float * usuario, MATRIZ * Contenido, int user, char * opcion)
+{
+  system("clear");
+
+  int u, movie, i;
+  size_t dot_product = 0;
+
+  char * linea = NULL;
+  char * nombres[Contenido->columnas];
+
+  for(i = 0;i < Contenido->columnas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/MovieNames.txt");
+  }
+
+  free(linea);
+
+  printf("\n\n\tTe recomendamos: \n\n");
+
+  for(movie = 0; movie < Contenido->columnas; movie++)
+  {
+    if(Ranking->Datos[user][movie] == 0)
+    {
+      for(u = 0; u < Contenido->filas; u++)
+      {
+        dot_product = dot_product + (usuario[u] * Contenido->Datos[u][movie]);
+      }
+
+      if(dot_product != 0)
+      {
+        printf("\t'%s'\n",nombres[movie]);
+      }
+
+      dot_product = 0;
+    }
+  }
+
+  vista_RegresaMenu(0,1,opcion);
+}

@@ -135,9 +135,11 @@ char * vista_MenuRecomendacion(MATRIZ * Usuario)
     printf("\t%d -> %s\n",i+1,nombres[i]);
   }
 
+  printf("\n\n\t0 -> Regresar al menu principal.");
+
   free(linea);
 
-  printf("\n\n\tIngrese el nùmero de usuario: ");
+  printf("\n\n\tIngrese el nùmero de usuario o el 0 para salir: ");
 
   fgets(opcion,TAMANO,stdin);
 

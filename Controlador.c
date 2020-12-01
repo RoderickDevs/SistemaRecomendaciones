@@ -196,8 +196,6 @@ void controlador_Proceso(int new_file, char * opcion)
       {
         opcion_recomendacion = vista_MenuRecomendacion(User);
 
-        printf("%s",opcion_recomendacion);
-
         modelo_Correccion_Nombre(opcion_recomendacion);
 
         validacion_reco = modelo_ValidaOpcion(opcion_recomendacion);
@@ -207,16 +205,30 @@ void controlador_Proceso(int new_file, char * opcion)
            user_reco = atoi(opcion_recomendacion);
         }
 
-        if(validacion_reco == 1)
+        if(validacion_reco == 1 || (user_reco < 0|| user_reco > User->filas))
         {
           free(opcion_recomendacion);
           vista_ErrorEntrada(0,1,opcion);
         }
 
-        else if(validacion_reco == 0)
+        else if(validacion_reco == 0 && (user_reco >= 0 || user_reco <= User->filas))
         {
-          free(opcion_recomendacion);
+          
+          if(user_reco != 0)
+          {
+            modelo_DotRecomendacion(Ranking,User->Datos[user_reco-1],Content,user_reco-1,opcion);
+            free(opcion_recomendacion);
+          }
+
+          else
+          {
+            free(opcion_recomendacion);
+            vista_Menu(0);
+          }
+          
+
         }
+
 
       }//if opciòn 4
 
