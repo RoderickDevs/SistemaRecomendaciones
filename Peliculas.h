@@ -326,6 +326,8 @@ EXTERN char * vista_MenuDespliegue(void);
 
 EXTERN char * vista_MenuEpocas(void);
 
+EXTERN char * vista_MenuRecomendacion(MATRIZ * Usuario);
+
 
 
 #undef Peliculas_IMPORT
