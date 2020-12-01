@@ -439,3 +439,128 @@ float modelo_CalculaPromedio(MATRIZ * Ranking,int movie)
 
   return promedio;
 }
+
+void modelo_DotRecomendacion(MATRIZ * Ranking, float * usuario, MATRIZ * Contenido, int user, char * opcion)
+{
+  system("clear");
+
+  int u, movie, i;
+  float dot_product = 0;
+
+  char * usuario_rec = NULL;
+  char * linea = NULL;
+  char * nombres[Contenido->columnas];
+
+  for(i = 0;i < Contenido->columnas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/MovieNames.txt");
+  }
+
+  usuario_rec = modelo_ObtenLinea(linea,user,"./Files/UserNames.txt");
+
+  free(linea);
+
+  printf("\n\n\tQuerido(a) %s, te recomendamos: \n\n",usuario_rec);
+
+  for(movie = 0; movie < Contenido->columnas; movie++)
+  {
+    if(Ranking->Datos[user][movie] == 0)
+    {
+      for(u = 0; u < Contenido->filas; u++)
+      {
+        dot_product = dot_product + (usuario[u] * Contenido->Datos[u][movie]);
+      }
+
+      if(dot_product != 0)
+      {
+        printf("\t'%s'\n",nombres[movie]);
+      }
+
+      dot_product = 0;
+    }
+  }
+
+  vista_RegresaMenu(0,1,opcion);
+}
+
+void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char * opcion)
+{
+  system("clear");
+
+  int i,u;
+  char * linea = NULL;
+  char * nombres[User->filas];
+
+  float dot_product = 0;
+
+  for(i = 0;i < User->filas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/UserNames.txt");
+  }
+
+  free(linea);
+
+  printf("\n\n\t Querido(a) %s, deberìas ser amigo de:\n\n", nombres[user]);
+
+  for(u = 0;u < User->filas;u++)
+  {
+    if(u != user)
+    {
+      for(i = 0;i < User->columnas;i++)
+      {
+        dot_product = dot_product + (usuario[i] * User->Datos[u][i]);
+      }
+
+      if(dot_product >= 3 )
+      {
+        printf("\t'%s'\n",nombres[u]);
+      }
+
+      dot_product = 0;
+
+    }
+  }
+
+  vista_RegresaMenu(0,1,opcion);
+} 
+
+void modelo_DotSimilares(MATRIZ * Content, int movie, char * opcion)
+{
+  system("clear");
+
+  int i,movie_index;
+  char * linea = NULL;
+  char * nombres[Content->columnas];
+
+  float dot_product = 0;
+
+  for(i = 0;i < Content->columnas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/MovieNames.txt");
+  }
+
+  free(linea);
+
+  printf("\n\n\t Peliculas similares a '%s':\n\n", nombres[movie]);
+
+  for(movie_index = 0;movie_index < Content->columnas;movie_index++)
+  {
+    if(movie_index != movie)
+    {
+      for(i = 0;i < Content->filas;i++)
+      {
+        dot_product = dot_product + (Content->Datos[i][movie] * Content->Datos[i][movie_index]);
+      }
+
+      if(dot_product > 2)
+      {
+        printf("\t'%s'\n",nombres[movie_index]);
+      }
+
+      dot_product = 0;
+
+    }
+  }
+
+  vista_RegresaMenu(0,1,opcion);
+}

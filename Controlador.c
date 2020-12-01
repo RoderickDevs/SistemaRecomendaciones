@@ -9,11 +9,15 @@ void controlador_Proceso(int new_file, char * opcion)
   int validacion_num;
   int validacion_epocas;
   int validacion_reco;
+  int validacion_sugerencia;
+  int validacion_similares;
 
   int EPOC = 0;
   int EPOCS;
   int num_opcion;
   int user_reco;
+  int sugerencia;
+  int similar_index;
 
   int i, j, index = 0,user;
   TAMANO * dimensiones = NULL;
@@ -27,6 +31,8 @@ void controlador_Proceso(int new_file, char * opcion)
   char * opcion_despliegue = NULL;
   char * numero_EPOC = NULL;
   char * opcion_recomendacion = NULL;
+  char * opcion_sugerencia = NULL;
+  char * opcion_similares = NULL;
 
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
@@ -194,9 +200,7 @@ void controlador_Proceso(int new_file, char * opcion)
 
       else if(num_opcion == 4)
       {
-        opcion_recomendacion = vista_MenuRecomendacion(User);
-
-        printf("%s",opcion_recomendacion);
+        opcion_recomendacion = vista_MenuRecomendacion(User,0);
 
         modelo_Correccion_Nombre(opcion_recomendacion);
 
@@ -207,30 +211,106 @@ void controlador_Proceso(int new_file, char * opcion)
            user_reco = atoi(opcion_recomendacion);
         }
 
-        if(validacion_reco == 1)
+        if(validacion_reco == 1 || (user_reco < 0|| user_reco > User->filas))
         {
           free(opcion_recomendacion);
           vista_ErrorEntrada(0,1,opcion);
         }
 
-        else if(validacion_reco == 0)
+        else if(validacion_reco == 0 && (user_reco >= 0 || user_reco <= User->filas))
         {
-          free(opcion_recomendacion);
+          
+          if(user_reco != 0)
+          {
+            modelo_DotRecomendacion(Ranking,User->Datos[user_reco-1],Content,user_reco-1,opcion);
+            free(opcion_recomendacion);
+          }
+
+          else
+          {
+            free(opcion_recomendacion);
+            vista_Menu(0);
+          }
+          
+
         }
+
 
       }//if opciòn 4
 
       else if(num_opcion == 5)
       {
-        printf("Sugerencias de amigos.\n\n");
+        opcion_sugerencia = vista_MenuRecomendacion(User,1);
+
+        modelo_Correccion_Nombre(opcion_sugerencia);
+
+        validacion_sugerencia = modelo_ValidaOpcion(opcion_sugerencia);
+
+        if(validacion_sugerencia == 0)
+        {
+           sugerencia = atoi(opcion_sugerencia);
+        }
+
+        if(validacion_sugerencia == 1 || (sugerencia < 0|| sugerencia > User->filas))
+        {
+          free(opcion_sugerencia);
+          vista_ErrorEntrada(0,1,opcion);
+        }
+
+        else if(validacion_sugerencia == 0 && (sugerencia >= 0 || sugerencia <= User->filas))
+        {
+          
+          if(sugerencia != 0)
+          {
+            modelo_DotSugerencia(User,User->Datos[sugerencia-1],sugerencia-1,opcion);
+            free(opcion_sugerencia);
+          }
+
+          else
+          {
+            free(opcion_sugerencia);
+            vista_Menu(0);
+          }
+          
+
+        }
       }//if opciòn 5
 
       else if(num_opcion == 6)
       {
-        printf("Peliculas similares.\n\n");
+        opcion_similares = vista_MenuPeliculas(Content);
+
+        modelo_Correccion_Nombre(opcion_similares);
+
+        validacion_similares = modelo_ValidaOpcion(opcion_similares);
+
+        if(validacion_similares == 0)
+        {
+           similar_index = atoi(opcion_similares);
+        }
+
+        if(validacion_similares == 1 || (similar_index < 0|| similar_index > Content->columnas))
+        {
+          free(opcion_similares);
+          vista_ErrorEntrada(0,1,opcion);
+        }
+
+        else if(validacion_similares == 0 && (similar_index>= 0 || similar_index <= Content->columnas))
+        {
+          
+          if(similar_index!= 0)
+          {
+            modelo_DotSimilares(Content,similar_index-1,opcion);
+            free(opcion_similares);
+          }
+
+          else
+          {
+            free(opcion_similares);
+            vista_Menu(0);
+          }
+        }
       }//if opciòn 6
-
-
       free(Content);
       free(User);
       free(Ranking);

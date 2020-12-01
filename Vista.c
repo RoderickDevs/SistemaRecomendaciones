@@ -117,7 +117,7 @@ char * vista_MenuEpocas(void)
   return numero;
 }
 
-char * vista_MenuRecomendacion(MATRIZ * Usuario)
+char * vista_MenuRecomendacion(MATRIZ * Usuario, int modo)
 {
   char * linea = NULL;
   char * nombres[Usuario->filas];
@@ -127,7 +127,15 @@ char * vista_MenuRecomendacion(MATRIZ * Usuario)
 
   system("clear");
 
-  printf("\n\n\t¿Para quien es la recomendaciòn?\n\n");
+  if(modo == 0)
+  {
+    printf("\n\n\t¿Para quien es la recomendaciòn?\n\n");
+  }
+
+  else if(modo == 1)
+  {
+    printf("\n\n\t¿Para quien es la sugerencia?\n\n");
+  }
 
   for(i = 0;i < Usuario->filas;i++)
   {
@@ -135,12 +143,72 @@ char * vista_MenuRecomendacion(MATRIZ * Usuario)
     printf("\t%d -> %s\n",i+1,nombres[i]);
   }
 
+  printf("\n\n\t0 -> Regresar al menu principal.");
+
   free(linea);
 
-  printf("\n\n\tIngrese el nùmero de usuario: ");
+  printf("\n\n\tIngrese el nùmero de usuario o el 0 para salir: ");
 
   fgets(opcion,TAMANO,stdin);
 
   return opcion;
 
+}
+
+char * vista_MenuSugerencia(MATRIZ * Usuario)
+{
+  char * linea = NULL;
+  char * nombres[Usuario->filas];
+  char * opcion = malloc(sizeof(char)*TAMANO);
+  FILE * names;
+  int i;
+
+  system("clear");
+
+  printf("\n\n\t¿Para quien es la sugerencia?\n\n");
+
+  for(i = 0;i < Usuario->filas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/UserNames.txt");
+    printf("\t%d -> %s\n",i+1,nombres[i]);
+  }
+
+  printf("\n\n\t0 -> Regresar al menu principal.");
+
+  free(linea);
+
+  printf("\n\n\tIngrese el nùmero de usuario o el 0 para salir: ");
+
+  fgets(opcion,TAMANO,stdin);
+
+  return opcion;
+}
+
+char * vista_MenuPeliculas(MATRIZ * Contenido)
+{
+  char * linea = NULL;
+  char * nombres[Contenido->columnas];
+  char * opcion = malloc(sizeof(char)*TAMANO);
+  FILE * names;
+  int i;
+
+  system("clear");
+
+  printf("\n\n\t¿Peliculas similares a cual desea revisar?\n\n");
+
+  for(i = 0;i < Contenido->columnas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/MovieNames.txt");
+    printf("\t%d -> %s\n",i+1,nombres[i]);
+  }
+
+  printf("\n\n\t0 -> Regresar al menu principal.");
+
+  free(linea);
+
+  printf("\n\n\tIngrese el nùmero de usuario o el 0 para salir: ");
+
+  fgets(opcion,TAMANO,stdin);
+
+  return opcion;
 }
