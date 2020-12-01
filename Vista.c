@@ -116,3 +116,31 @@ char * vista_MenuEpocas(void)
 
   return numero;
 }
+
+char * vista_MenuRecomendacion(MATRIZ * Usuario)
+{
+  char * linea = NULL;
+  char * nombres[Usuario->filas];
+  char * opcion = malloc(sizeof(char)*TAMANO);
+  FILE * names;
+  int i;
+
+  system("clear");
+
+  printf("\n\n\t¿Para quien es la recomendaciòn?\n\n");
+
+  for(i = 0;i < Usuario->filas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/UserNames.txt");
+    printf("\t%d -> %s\n",i+1,nombres[i]);
+  }
+
+  free(linea);
+
+  printf("\n\n\tIngrese el nùmero de usuario: ");
+
+  fgets(opcion,TAMANO,stdin);
+
+  return opcion;
+
+}

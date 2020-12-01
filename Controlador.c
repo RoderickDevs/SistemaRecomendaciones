@@ -8,10 +8,13 @@ void controlador_Proceso(int new_file, char * opcion)
 {
   int validacion_num;
   int validacion_epocas;
+  int validacion_reco;
 
   int EPOC = 0;
   int EPOCS;
   int num_opcion;
+  int user_reco;
+
   int i, j, index = 0,user;
   TAMANO * dimensiones = NULL;
   float * float_ptr = NULL;
@@ -23,6 +26,7 @@ void controlador_Proceso(int new_file, char * opcion)
 
   char * opcion_despliegue = NULL;
   char * numero_EPOC = NULL;
+  char * opcion_recomendacion = NULL;
 
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
@@ -85,6 +89,7 @@ void controlador_Proceso(int new_file, char * opcion)
 
         if(validacion_num == 1 || (num_opcion < 0 || num_opcion > 2))
         {
+          free(opcion_despliegue);
           vista_ErrorEntrada(0,1,opcion);
         }
 
@@ -133,12 +138,15 @@ void controlador_Proceso(int new_file, char * opcion)
         }
 
         if(validacion_epocas == 1 || EPOCS < 100)
-        {
+        { 
+          free(numero_EPOC);
           vista_ErrorEntrada(0,2,opcion);
         }
 
         else if(validacion_epocas == 0)
         {
+          free(numero_EPOC);
+
           float_ptr = malloc(sizeof(float)*Content->filas);
 
           for(EPOC = 0; EPOC < EPOCS; EPOC++)
@@ -178,7 +186,6 @@ void controlador_Proceso(int new_file, char * opcion)
               
             }
           }
-
           free(float_ptr);
         }
         /*Aqui termina el proceso de aprendizaje*/
@@ -187,7 +194,30 @@ void controlador_Proceso(int new_file, char * opcion)
 
       else if(num_opcion == 4)
       {
-        printf("Dar recomendaciòn.\n\n");
+        opcion_recomendacion = vista_MenuRecomendacion(User);
+
+        printf("%s",opcion_recomendacion);
+
+        modelo_Correccion_Nombre(opcion_recomendacion);
+
+        validacion_reco = modelo_ValidaOpcion(opcion_recomendacion);
+
+        if(validacion_reco == 0)
+        {
+           user_reco = atoi(opcion_recomendacion);
+        }
+
+        if(validacion_reco == 1)
+        {
+          free(opcion_recomendacion);
+          vista_ErrorEntrada(0,1,opcion);
+        }
+
+        else if(validacion_reco == 0)
+        {
+          free(opcion_recomendacion);
+        }
+
       }//if opciòn 4
 
       else if(num_opcion == 5)
