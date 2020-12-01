@@ -276,7 +276,9 @@ EXTERN void modelo_DespliegaPeliculas(MATRIZ * Ranking,char * opcion);
 
 EXTERN float modelo_CalculaPromedio(MATRIZ * Ranking,int movie);
 
-EXTERN size_t modelo_DotRecomendacion(MATRIZ * Ranking , float * usuario, MATRIZ * Contenido, int user, char * opcion);
+EXTERN void modelo_DotRecomendacion(MATRIZ * Ranking , float * usuario, MATRIZ * Contenido, int user, char * opcion);
+
+EXTERN void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char * opcion);
 
 /*
  *
@@ -328,7 +330,8 @@ EXTERN char * vista_MenuDespliegue(void);
 
 EXTERN char * vista_MenuEpocas(void);
 
-EXTERN char * vista_MenuRecomendacion(MATRIZ * Usuario);
+EXTERN char * vista_MenuRecomendacion(MATRIZ * Usuario, int modo);
+
 
 
 

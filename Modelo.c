@@ -440,13 +440,14 @@ float modelo_CalculaPromedio(MATRIZ * Ranking,int movie)
   return promedio;
 }
 
-size_t modelo_DotRecomendacion(MATRIZ * Ranking, float * usuario, MATRIZ * Contenido, int user, char * opcion)
+void modelo_DotRecomendacion(MATRIZ * Ranking, float * usuario, MATRIZ * Contenido, int user, char * opcion)
 {
   system("clear");
 
   int u, movie, i;
-  size_t dot_product = 0;
+  float dot_product = 0;
 
+  char * usuario_rec = NULL;
   char * linea = NULL;
   char * nombres[Contenido->columnas];
 
@@ -455,9 +456,11 @@ size_t modelo_DotRecomendacion(MATRIZ * Ranking, float * usuario, MATRIZ * Conte
     nombres[i] = modelo_ObtenLinea(linea,i,"./Files/MovieNames.txt");
   }
 
+  usuario_rec = modelo_ObtenLinea(linea,user,"./Files/UserNames.txt");
+
   free(linea);
 
-  printf("\n\n\tTe recomendamos: \n\n");
+  printf("\n\n\tQuerido(a) %s, te recomendamos: \n\n",usuario_rec);
 
   for(movie = 0; movie < Contenido->columnas; movie++)
   {
@@ -479,3 +482,44 @@ size_t modelo_DotRecomendacion(MATRIZ * Ranking, float * usuario, MATRIZ * Conte
 
   vista_RegresaMenu(0,1,opcion);
 }
+
+void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char * opcion)
+{
+  system("clear");
+
+  int i,u;
+  char * linea = NULL;
+  char * nombres[User->filas];
+
+  float dot_product = 0;
+
+  for(i = 0;i < User->filas;i++)
+  {
+    nombres[i] = modelo_ObtenLinea(linea,i,"./Files/UserNames.txt");
+  }
+
+  free(linea);
+
+  printf("\n\n\t Querido(a) %s, deberìas ser amigo de:\n\n", nombres[user]);
+
+  for(u = 0;u < User->filas;u++)
+  {
+    if(u != user)
+    {
+      for(i = 0;i < User->columnas;i++)
+      {
+        dot_product = dot_product + (usuario[i] * User->Datos[u][i]);
+      }
+
+      if(dot_product != 0)
+      {
+        printf("\t'%s'\n",nombres[u]);
+      }
+
+      dot_product = 0;
+
+    }
+  }
+
+  vista_RegresaMenu(0,1,opcion);
+} 

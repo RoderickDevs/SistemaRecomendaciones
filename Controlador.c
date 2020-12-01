@@ -9,11 +9,13 @@ void controlador_Proceso(int new_file, char * opcion)
   int validacion_num;
   int validacion_epocas;
   int validacion_reco;
+  int validacion_sugerencia;
 
   int EPOC = 0;
   int EPOCS;
   int num_opcion;
   int user_reco;
+  int sugerencia;
 
   int i, j, index = 0,user;
   TAMANO * dimensiones = NULL;
@@ -27,6 +29,7 @@ void controlador_Proceso(int new_file, char * opcion)
   char * opcion_despliegue = NULL;
   char * numero_EPOC = NULL;
   char * opcion_recomendacion = NULL;
+  char * opcion_sugerencia = NULL;
 
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
@@ -194,7 +197,7 @@ void controlador_Proceso(int new_file, char * opcion)
 
       else if(num_opcion == 4)
       {
-        opcion_recomendacion = vista_MenuRecomendacion(User);
+        opcion_recomendacion = vista_MenuRecomendacion(User,0);
 
         modelo_Correccion_Nombre(opcion_recomendacion);
 
@@ -234,7 +237,40 @@ void controlador_Proceso(int new_file, char * opcion)
 
       else if(num_opcion == 5)
       {
-        printf("Sugerencias de amigos.\n\n");
+        opcion_sugerencia = vista_MenuRecomendacion(User,1);
+
+        modelo_Correccion_Nombre(opcion_sugerencia);
+
+        validacion_sugerencia = modelo_ValidaOpcion(opcion_sugerencia);
+
+        if(validacion_sugerencia == 0)
+        {
+           sugerencia = atoi(opcion_sugerencia);
+        }
+
+        if(validacion_sugerencia == 1 || (sugerencia < 0|| sugerencia > User->filas))
+        {
+          free(opcion_sugerencia);
+          vista_ErrorEntrada(0,1,opcion);
+        }
+
+        else if(validacion_sugerencia == 0 && (sugerencia >= 0 || sugerencia <= User->filas))
+        {
+          
+          if(sugerencia != 0)
+          {
+            modelo_DotSugerencia(User,User->Datos[sugerencia-1],sugerencia-1,opcion);
+            free(opcion_sugerencia);
+          }
+
+          else
+          {
+            free(opcion_sugerencia);
+            vista_Menu(0);
+          }
+          
+
+        }
       }//if opciòn 5
 
       else if(num_opcion == 6)
