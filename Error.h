@@ -55,7 +55,7 @@
 */
 
 
-EXTERN void controlador_errores(float error);
+EXTERN void controlador_errores(int main, float error);
 
 
 /*

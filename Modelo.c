@@ -131,7 +131,7 @@ float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index)
 
   for(i = 0;i < Q_item->filas;i++)
   {
-    prediccion = prediccion + (P_user[i] * (Q_item->Datos[i][index]));
+    prediccion = prediccion + (P_user[i] * ((Q_item->Datos[i][index])));
   }
 
   return prediccion;
@@ -471,7 +471,7 @@ void modelo_DotRecomendacion(MATRIZ * Ranking, float * usuario, MATRIZ * Conteni
         dot_product = dot_product + (usuario[u] * Contenido->Datos[u][movie]);
       }
 
-      if(dot_product != 0)
+      if(dot_product >= 6)
       {
         printf("\t'%s'\n",nombres[movie]);
       }
@@ -511,7 +511,7 @@ void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char * opcio
         dot_product = dot_product + (usuario[i] * User->Datos[u][i]);
       }
 
-      if(dot_product >= 3 )
+      if(dot_product/10 >= 9 )
       {
         printf("\t'%s'\n",nombres[u]);
       }

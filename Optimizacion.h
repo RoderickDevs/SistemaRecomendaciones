@@ -97,7 +97,7 @@ EXTERN float *modelo_optimizacion_content(float *user, float *content, size_t si
 */
 
 
-EXTERN float *modelo_optimizacion_user(float *user, float *content, size_t size, float n, float riu);
+EXTERN void modelo_optimizacion_user(MATRIZ * User,  MATRIZ * Content, size_t user_index, size_t movie, float error, long double n);
 
 
 /*
