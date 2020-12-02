@@ -511,7 +511,7 @@ void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char * opcio
         dot_product = dot_product + (usuario[i] * User->Datos[u][i]);
       }
 
-      if(dot_product/10 >= 9 )
+      if(dot_product*(0.1) >= 10 )
       {
         printf("\t'%s'\n",nombres[u]);
       }
@@ -563,4 +563,22 @@ void modelo_DotSimilares(MATRIZ * Content, int movie, char * opcion)
   }
 
   vista_RegresaMenu(0,1,opcion);
+}
+
+void modelo_GraficaError(char * archivo)
+{
+  int NUM_COMMANDS = 6;
+  char * commandsForGnuplot[] = {"set terminal png size 1000,900","set output './Files/Training.png'","set title \"Error Promedio\"","set xlabel 'EPO'","set ylabel 'Error'","plot 'errores.csv' using 1:2 t 'Comportamiento' with lines"};
+  FILE * gnuplotPipe = NULL;
+
+  gnuplotPipe = popen("gnuplot -persistent","w");
+  
+  //Para general el plot
+  for(int i = 0;i < NUM_COMMANDS;i++)
+  {
+    fprintf(gnuplotPipe,"%s \n",commandsForGnuplot[i]);
+  }
+
+  pclose(gnuplotPipe);
+
 }

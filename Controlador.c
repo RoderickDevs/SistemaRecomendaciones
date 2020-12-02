@@ -84,8 +84,8 @@ void controlador_Proceso(int new_file, char * opcion)
 
       /*Obtenemos los datos de las matrices que se necesitaran para los procesos del sistema*/
       DataShell("./Files/ContentDB.csv",Content);
-      DataShell("./Files/UserDB.csv",User);
       DataShell("./Files/RankingDB.csv",Ranking);
+      DataShell("./Files/UserDB.csv",User);
 
       if(num_opcion == 1)
       {
@@ -150,7 +150,7 @@ void controlador_Proceso(int new_file, char * opcion)
           EPOCS = atoi(numero_EPOC);
         }
 
-        if(validacion_epocas == 1)//Poner los EPOCS
+        if(validacion_epocas == 1 || EPOCS < 100)
         { 
           free(numero_EPOC);
           vista_ErrorEntrada(0,2,opcion);
@@ -202,9 +202,18 @@ void controlador_Proceso(int new_file, char * opcion)
             }
 
             error_promedio = suma_errores/count_errores;
-            printf("\nEPO %d Error Promedio = %Lf",EPOC,error_promedio);
+            //printf("\nEPO %d Error Promedio = %Lf",EPOC,error_promedio);
 
-            controlador_errores(EPOC,error_promedio);
+            if(EPOC == 0)
+            {
+              controlador_errores(EPOC,error_promedio,"w");
+            }
+
+            else
+            {
+              controlador_errores(EPOC,error_promedio,"a");
+            }
+            
 
             if(EPOC==0)
             {
@@ -215,7 +224,6 @@ void controlador_Proceso(int new_file, char * opcion)
             {
               if(error_promedio > error_protemp)
               {
-                printf("galleta\n");
                 n = n/10;
               }
 
@@ -227,22 +235,14 @@ void controlador_Proceso(int new_file, char * opcion)
             
           }
 
-          printf("\n");
-
-          for(i=0;i<User->filas;i++)
-          {
-            for(j=0;j<User->columnas;j++)
-            {
-              printf("%f  ",User->Datos[i][j]);
-            }
-            printf("\n");
-          }
-
           modelo_ImprimeUserDB(User->Datos,User->filas,User->columnas);
-
           free(float_ptr);
+          modelo_GraficaError("errores.csv");
 
-          printf("%Lf\n\n",n);
+          printf("\n\n\n\tSe ha terminado el entrenamiento!\n");
+          printf("\tEn la carpeta Files se encontrara el registro del error en 'Training.png'\n");
+
+          vista_RegresaMenu(0,0,NULL);
         }
         /*Aqui termina el proceso de aprendizaje*/
 

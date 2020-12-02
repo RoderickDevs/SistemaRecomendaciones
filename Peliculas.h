@@ -282,6 +282,9 @@ EXTERN void modelo_DotSugerencia(MATRIZ * User, float * usuario, int user, char 
 
 EXTERN void modelo_DotSimilares(MATRIZ * Content, int movie, char * opcion);
 
+EXTERN void modelo_GraficaError(char * archivo);
+
+
 /*
  *
  * La funciòn DataShell() realiza las funciones previamente realizadas en la practica del DataShell
