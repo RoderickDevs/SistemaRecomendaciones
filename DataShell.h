@@ -1,15 +1,15 @@
-//
+/**
 //  DataShell.h
 //  
 //
 //  Creado por Rodrigo Garcia Diaz y Jesus Enrique Domìnguez el 27 de octubre del 2020.
-//
+*/
 
 #ifndef DataShell_h
 #define DataShell_h
 
 
-/*
+/**
 * System headers required by the following declarations
 * (the implementation will import its specific dependencies):
 */
@@ -19,7 +19,7 @@
 #include <string.h>
 #include "Peliculas.h"
 
-/*
+/**
 * Application specific headers required by the following declarations
 * (the implementation will import its specific dependencies):
 */
@@ -43,12 +43,13 @@
 /* Function prototypes. */
 
 
-/*
+/**
  *
+ * @brief
  * La funcion vista_Menu pedira al usuario el nombre del archivo que desea ingresar al sistema para ser tokenizado y
  * formateado
  *
- * @params
+ * @param
  *      void
         
  * @returns
@@ -60,11 +61,12 @@ EXTERN void vista_MenuDS(void);
 
 
 
-/*
+/**
  *
+ * @brief
  * La funcion controlador_Proceso controlarà las llamadas a las funciones y las variables
  *
- * @params
+ * @param
  *     archivo (char *):
             nombre del archivo que se abrirà para el correspondiente proceso
 
@@ -76,11 +78,12 @@ EXTERN void vista_MenuDS(void);
 EXTERN void controlador_ProcesoDS(char * archivo, MATRIZ * Matriz);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_Abre_Archivo abrirà el archivo determinado con 'nombre_archivo' en modo de lectura.
  *
- * @params
+ * @param
  *     nombre_archivo (char *):
             nombre del archivo que se abrirà para el correspondiente proceso
 
@@ -92,11 +95,12 @@ EXTERN void controlador_ProcesoDS(char * archivo, MATRIZ * Matriz);
 EXTERN FILE * modelo_Abre_Archivo(char * nombre_archivo);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_Valida_Nombre validarà si el nombre de archivo ingresado por el usuario es correcto.
  *
- * @params
+ * @param
  *     nombre_archivo (char *):
             nombre del archivo que se validarà
 
@@ -108,11 +112,12 @@ EXTERN FILE * modelo_Abre_Archivo(char * nombre_archivo);
 EXTERN int modelo_Valida_Nombre(char * nombre_archivo);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_Correcion_Nombre cambiarà el \n leido por fgets por un \0
  *
- * @params
+ * @param
  *     nombre_archivo (char *):
             nombre del archivo a corregir
 
@@ -125,11 +130,12 @@ EXTERN void modelo_Correccion_Nombre(char * nombre_archivo);
 
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_Tokenizer separara la cadena en cada coma.
  *
- * @params
+ * @param
  *     linea (char *):
         cadena que va a separar
 
@@ -141,11 +147,12 @@ EXTERN void modelo_Correccion_Nombre(char * nombre_archivo);
 EXTERN float * modelo_Tokenizer(char * linea, float * buffer);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_Columnas nos permite calcular la cantidad de columnas presentes en el archivo leido.
  *
- * @params
+ * @param
  *     linea (char *):
         cadena con la que se calcularàn las columnas presentes
 
@@ -158,11 +165,12 @@ EXTERN size_t modelo_Columnas(char * linea);
 
 
 
-/*
+/**
  *
+ * @brief
  * La funcion vista_Error_Menos1 mostrarà un mensaje de error indicando que deberìa hacer para corregirlo.
  *
- * @params
+ * @param
  *     none
 
  * @returns
@@ -174,11 +182,12 @@ EXTERN size_t modelo_Columnas(char * linea);
 EXTERN void vista_Error_Menos1(void);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion vista_Error_Apertura_Archivo mostrarà un mensaje de error indicando que deberìa hacer para corregirlo.
  *
- * @params
+ * @param
  *     none
 
  * @returns
@@ -188,11 +197,12 @@ EXTERN void vista_Error_Menos1(void);
 
 EXTERN void vista_Error_Apertura_Archivo(void);
 
-/*
+/**
  *
+ * @brief
  * La funcion controlador_linea quita las comas de la linea y los sustituye por espacios.
  *
- * @params
+ * @param
  *fila (char *):
         cadena que se sustituira las comas.
 
