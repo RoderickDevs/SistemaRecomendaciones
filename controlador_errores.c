@@ -3,13 +3,13 @@
 //void controlador_errores(double error);
 //double controlador_errorpromedio();
 
-void controlador_errores(float error){
+void controlador_errores(int EPOC, float error, char * modo){
     
     FILE *fp;
 
-    fp = fopen("errores.er", "a");
+    fp = fopen("errores.csv", modo);
 
-    fprintf(fp, "%f\n", error);
+    fprintf(fp, "%d %f\n",EPOC, error);
 
     fclose(fp);
 

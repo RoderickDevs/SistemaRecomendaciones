@@ -6,6 +6,14 @@
 
 void controlador_Proceso(int new_file, char * opcion)
 {
+
+  size_t count_errores = 0;
+  long double error_promedio;
+  long double suma_errores = 0;
+  long double error_protemp = 0;
+
+  long double n = 0.1;
+
   int validacion_num;
   int validacion_epocas;
   int validacion_reco;
@@ -37,7 +45,6 @@ void controlador_Proceso(int new_file, char * opcion)
   MATRIZ * Content = malloc(sizeof(MATRIZ));
   MATRIZ * User = malloc(sizeof(MATRIZ));
   MATRIZ * Ranking = malloc(sizeof(MATRIZ));
-
 
   /*Corregimos el problema de fgets con */
   modelo_Correccion_Nombre(opcion);
@@ -77,8 +84,8 @@ void controlador_Proceso(int new_file, char * opcion)
 
       /*Obtenemos los datos de las matrices que se necesitaran para los procesos del sistema*/
       DataShell("./Files/ContentDB.csv",Content);
-      DataShell("./Files/UserDB.csv",User);
       DataShell("./Files/RankingDB.csv",Ranking);
+      DataShell("./Files/UserDB.csv",User);
 
       if(num_opcion == 1)
       {
@@ -157,7 +164,7 @@ void controlador_Proceso(int new_file, char * opcion)
 
           for(EPOC = 0; EPOC < EPOCS; EPOC++)
           {
-            printf("EPOC: %d\n",EPOC+1);
+            //printf("EPOC: %d\n",EPOC+1);
 
             for(user = 0;user < User->filas ;user++)
             { 
@@ -167,7 +174,10 @@ void controlador_Proceso(int new_file, char * opcion)
                 {
                   prediccion = modelo_Prediccion(User->Datos[user],Content,index);
 
-                  error = pow((Ranking->Datos[user][index] - (prediccion)),2) * (0.5);
+                  error = (Ranking->Datos[user][index] - (prediccion))*(0.5);
+
+                  count_errores++;
+                  suma_errores = suma_errores + error;
 
                   for ( peli = 0; peli < Content->filas; peli++)
                   {
@@ -175,10 +185,10 @@ void controlador_Proceso(int new_file, char * opcion)
                   }
 
                   /*Optimizaciòn de usuario*/
-                  User->Datos[user] = modelo_optimizacion_user(User->Datos[user],float_ptr, User->columnas, 0.1, Ranking->Datos[user][index]);
+                  modelo_optimizacion_user(User,Content,user,index,error,0.1);
+                  
 
                   /*Se guarda el error en el archivo*/
-                  controlador_errores(error);
                 }
 
                 else if (Ranking->Datos[user][index] == 0)
@@ -187,12 +197,52 @@ void controlador_Proceso(int new_file, char * opcion)
                 }
                 
               }
-
               /*Determinar si el error creciò o disminuyò para actualizar n*/
               
             }
+
+            error_promedio = suma_errores/count_errores;
+            //printf("\nEPO %d Error Promedio = %Lf",EPOC,error_promedio);
+
+            if(EPOC == 0)
+            {
+              controlador_errores(EPOC,error_promedio,"w");
+            }
+
+            else
+            {
+              controlador_errores(EPOC,error_promedio,"a");
+            }
+            
+
+            if(EPOC==0)
+            {
+              error_protemp = error_promedio;
+            }
+
+            else
+            {
+              if(error_promedio > error_protemp)
+              {
+                n = n/10;
+              }
+
+              error_protemp = error_promedio;
+            }
+
+            suma_errores = 0;
+            count_errores = 0;
+            
           }
+
+          modelo_ImprimeUserDB(User->Datos,User->filas,User->columnas);
           free(float_ptr);
+          modelo_GraficaError("errores.csv");
+
+          printf("\n\n\n\tSe ha terminado el entrenamiento!\n");
+          printf("\tEn la carpeta Files se encontrara el registro del error en 'Training.png'\n");
+
+          vista_RegresaMenu(0,0,NULL);
         }
         /*Aqui termina el proceso de aprendizaje*/
 
