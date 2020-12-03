@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto Final Taller de Aplicaciones: Fichero Fuente Peliculas.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Ibero_mexico_mini.jpg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Proyecto Final Taller de Aplicaciones
+   </div>
+   <div id="projectbrief">Sistema de recomendaciones. Por: Rodrigo García Díaz y Jesús Enrique Domínguez Barrios.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Peliculas.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Peliculas_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef Peliculas_h</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define Peliculas_h</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">* System headers required by the following declarations</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">* (the implementation will import its specific dependencies):</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">* Application specific headers required by the following declarations</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">* (the implementation will import its specific dependencies):</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/* Constants declarations. */</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/* Set EXTERN macro: */</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifndef Peliculas_IMPORT</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">   33</a></span>&#160;<span class="preprocessor">    #define EXTERN</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">    #define EXTERN extern</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">/* Types declarations. */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structnum__lineas.html">   40</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structnum__lineas.html">num_lineas</a>{</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structnum__lineas.html#a4ca5efcbb4ce4f50c61c852f68d52f89">   41</a></span>&#160;  <span class="keywordtype">size_t</span> <a class="code" href="structnum__lineas.html#a4ca5efcbb4ce4f50c61c852f68d52f89">columnas</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structnum__lineas.html#a44fc685face2cc64217ef1004cabff23">   42</a></span>&#160;  <span class="keywordtype">size_t</span> <a class="code" href="structnum__lineas.html#a44fc685face2cc64217ef1004cabff23">filas</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#afa60bda0ac5d49bde59e5b715b55ac95">   43</a></span>&#160;}<a class="code" href="Peliculas_8h.html#afa60bda0ac5d49bde59e5b715b55ac95">TAMANO</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structmatriz__struct.html">   45</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structmatriz__struct.html">matriz_struct</a>{</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structmatriz__struct.html#ad19a4db4a3fca25418d490625a9961d4">   46</a></span>&#160;  <span class="keywordtype">float</span> * <a class="code" href="structmatriz__struct.html#ad19a4db4a3fca25418d490625a9961d4">Datos</a>[BUFSIZ];</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structmatriz__struct.html#a057758c9e12259c6e257e4744c858e0c">   47</a></span>&#160;  <span class="keywordtype">size_t</span> <a class="code" href="structmatriz__struct.html#a057758c9e12259c6e257e4744c858e0c">columnas</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structmatriz__struct.html#a8c223517db20fbc336fd853b26f8c232">   48</a></span>&#160;  <span class="keywordtype">size_t</span> <a class="code" href="structmatriz__struct.html#a8c223517db20fbc336fd853b26f8c232">filas</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a84d747b49a8226961790c77a9d0037f4">   49</a></span>&#160;}<a class="code" href="Peliculas_8h.html#a84d747b49a8226961790c77a9d0037f4">MATRIZ</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/* Global variables declarations. */</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/* Function prototypes. */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#aa04b411090cbe78c716e1fd2df9d10ca">   73</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#aa04b411090cbe78c716e1fd2df9d10ca">controlador_Proceso</a>(<span class="keywordtype">int</span> new_file, <span class="keywordtype">char</span> * opcion);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a94167de58c3dd86bd6b700fa1b0413d3">   91</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a94167de58c3dd86bd6b700fa1b0413d3">vista_Menu</a>(<span class="keywordtype">int</span> new_file);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a752acdd43590dcb7103e7355a7e6de1f">  111</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">float</span> * <a class="code" href="Peliculas_8h.html#a752acdd43590dcb7103e7355a7e6de1f">modelo_IniciaUserDB</a>(<span class="keywordtype">size_t</span> columnas, <span class="keywordtype">float</span> * buffer);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a16f4ac8c69cc80012432c36080175ade">  133</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">float</span> <a class="code" href="Peliculas_8h.html#a16f4ac8c69cc80012432c36080175ade">modelo_Prediccion</a>(<span class="keywordtype">float</span> * P_user, <a class="code" href="structmatriz__struct.html">MATRIZ</a> * Q_item, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a6ec7417723c27c9dccacf2f3e48f50f6">  157</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">float</span> <a class="code" href="Peliculas_8h.html#a6ec7417723c27c9dccacf2f3e48f50f6">modelo_Error</a>(<span class="keywordtype">float</span> * prediccion, <a class="code" href="structmatriz__struct.html">MATRIZ</a> * Rating, <span class="keywordtype">int</span> user, <span class="keywordtype">int</span> item);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a25ce90fbabc370be34f91e9251879d31">  177</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a25ce90fbabc370be34f91e9251879d31">modelo_ImprimeUserDB</a>(<span class="keywordtype">float</span> * Afinidades[], <span class="keywordtype">size_t</span> filas, <span class="keywordtype">size_t</span> columnas);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a8f57b6d65241c96b1fd53d8090288f5f">  194</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a8f57b6d65241c96b1fd53d8090288f5f">modelo_DeterminaTamano</a>(<a class="code" href="structnum__lineas.html">TAMANO</a> * dimensiones);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a27ba7311a5968a1425737d335e928a19">  210</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a27ba7311a5968a1425737d335e928a19">modelo_ImprimeRanking</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * RankingDB);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a18d39d0559fc4a8b41a4f7fbcb67ed5c">  226</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">int</span> <a class="code" href="Peliculas_8h.html#a18d39d0559fc4a8b41a4f7fbcb67ed5c">modelo_ValidaOpcion</a>(<span class="keywordtype">char</span> * opcion);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a2710cca8d792a5ef04aa096db611df33">  243</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> FILE * <a class="code" href="Peliculas_8h.html#a2710cca8d792a5ef04aa096db611df33">modelo_AbreArchivo</a>(<span class="keywordtype">char</span> * nombre_archivo, <span class="keywordtype">char</span> * modo);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a3e3499d85dc03585fa9715efd0d59828">  263</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">size_t</span> <a class="code" href="Peliculas_8h.html#a3e3499d85dc03585fa9715efd0d59828">modelo_RecorreTXT</a>(FILE * archivo);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a42514c2c2a6d33a86df94138fd93622c">  281</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a42514c2c2a6d33a86df94138fd93622c">modelo_CreaUserDB</a>(<a class="code" href="structnum__lineas.html">TAMANO</a> * dimensiones);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
+<div class="line"><a name="l00283"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a9f434712706698ae2ad65dcf3245bf4f">  283</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">char</span> * <a class="code" href="Peliculas_8h.html#a9f434712706698ae2ad65dcf3245bf4f">modelo_ObtenLinea</a>(<span class="keywordtype">char</span> * linea_leida, <span class="keywordtype">int</span> index, <span class="keywordtype">char</span> * nombre_archivo);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#ae81ed3c1a4c99ad900719109faa592ab">  285</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#ae81ed3c1a4c99ad900719109faa592ab">modelo_DespliegaUsuarios</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * Ranking,<span class="keywordtype">char</span> * opcion);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
+<div class="line"><a name="l00287"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a7e553753feef3bd9afb9a48fdc73a640">  287</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a7e553753feef3bd9afb9a48fdc73a640">modelo_DespliegaPeliculas</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * Ranking,<span class="keywordtype">char</span> * opcion);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#ae26e6d1c588c9892172ca6974e9dfb38">  289</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">float</span> <a class="code" href="Peliculas_8h.html#ae26e6d1c588c9892172ca6974e9dfb38">modelo_CalculaPromedio</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * Ranking,<span class="keywordtype">int</span> movie);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a954f34fb50836d59d64fd72f8bb61796">  291</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a954f34fb50836d59d64fd72f8bb61796">modelo_DotRecomendacion</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * Ranking , <span class="keywordtype">float</span> * usuario, <a class="code" href="structmatriz__struct.html">MATRIZ</a> * Contenido, <span class="keywordtype">int</span> user, <span class="keywordtype">char</span> * opcion);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a9329df103883b2c93c4bf879e76dfae7">  293</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a9329df103883b2c93c4bf879e76dfae7">modelo_DotSugerencia</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * User, <span class="keywordtype">float</span> * usuario, <span class="keywordtype">int</span> user, <span class="keywordtype">char</span> * opcion);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
+<div class="line"><a name="l00295"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#afb04fa36650e19158d497e825ee40992">  295</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#afb04fa36650e19158d497e825ee40992">modelo_DotSimilares</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * Content, <span class="keywordtype">int</span> movie, <span class="keywordtype">char</span> * opcion);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a0f3e677001af09732c856cda9302fd1c">  297</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a0f3e677001af09732c856cda9302fd1c">modelo_GraficaError</a>(<span class="keywordtype">char</span> * archivo);</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
+<div class="line"><a name="l00315"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a27b4534030d076a82dfa5b9a8fed94c2">  315</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a27b4534030d076a82dfa5b9a8fed94c2">DataShell</a>(<span class="keywordtype">char</span> * archivo, <a class="code" href="structmatriz__struct.html">MATRIZ</a> * Matriz);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#aa0aea1963907f9720fe2c796d5446cd3">  330</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#aa0aea1963907f9720fe2c796d5446cd3">vista_ErrorAperturaArchivo</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a6a8490fd8740905ddc36f3aa604fe33b">  345</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a6a8490fd8740905ddc36f3aa604fe33b">vista_ErrorEntrada</a>(<span class="keywordtype">int</span> new_file, <span class="keywordtype">int</span> retorno, <span class="keywordtype">char</span> * despliegue);</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
+<div class="line"><a name="l00347"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a148be9d48385f71ca03fea679a51f637">  347</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">void</span> <a class="code" href="Peliculas_8h.html#a148be9d48385f71ca03fea679a51f637">vista_RegresaMenu</a>(<span class="keywordtype">int</span> new_file, <span class="keywordtype">int</span> retorno, <span class="keywordtype">char</span> * opcion);</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
+<div class="line"><a name="l00349"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#aa3de82ca6e8c55025cad8ad6bb1d96ae">  349</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">char</span> * <a class="code" href="Peliculas_8h.html#aa3de82ca6e8c55025cad8ad6bb1d96ae">vista_MenuDespliegue</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#ad85c549960b41c53250c5a05e97f9a81">  351</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">char</span> * <a class="code" href="Peliculas_8h.html#ad85c549960b41c53250c5a05e97f9a81">vista_MenuEpocas</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
+<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#aca725b3ab1891ccd79086eccf10404b1">  353</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">char</span> * <a class="code" href="Peliculas_8h.html#aca725b3ab1891ccd79086eccf10404b1">vista_MenuRecomendacion</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * Usuario, <span class="keywordtype">int</span> modo);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
+<div class="line"><a name="l00355"></a><span class="lineno"><a class="line" href="Peliculas_8h.html#a2eb8403aa1b735487474e6ced09009ca">  355</a></span>&#160;<a class="code" href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <span class="keywordtype">char</span> * <a class="code" href="Peliculas_8h.html#a2eb8403aa1b735487474e6ced09009ca">vista_MenuPeliculas</a>(<a class="code" href="structmatriz__struct.html">MATRIZ</a> * COntenido);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160; </div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160; </div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160; </div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">#undef Peliculas_IMPORT</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="preprocessor">#undef EXTERN</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160; </div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Peliculas_h */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aPeliculas_8h_html_a0f3e677001af09732c856cda9302fd1c"><div class="ttname"><a href="Peliculas_8h.html#a0f3e677001af09732c856cda9302fd1c">modelo_GraficaError</a></div><div class="ttdeci">EXTERN void modelo_GraficaError(char *archivo)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a148be9d48385f71ca03fea679a51f637"><div class="ttname"><a href="Peliculas_8h.html#a148be9d48385f71ca03fea679a51f637">vista_RegresaMenu</a></div><div class="ttdeci">EXTERN void vista_RegresaMenu(int new_file, int retorno, char *opcion)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a16f4ac8c69cc80012432c36080175ade"><div class="ttname"><a href="Peliculas_8h.html#a16f4ac8c69cc80012432c36080175ade">modelo_Prediccion</a></div><div class="ttdeci">EXTERN float modelo_Prediccion(float *P_user, MATRIZ *Q_item, int index)</div><div class="ttdoc">La funcion modelo_Prediccion calcula el intento inicial entre P[user] y Q[item].</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a18d39d0559fc4a8b41a4f7fbcb67ed5c"><div class="ttname"><a href="Peliculas_8h.html#a18d39d0559fc4a8b41a4f7fbcb67ed5c">modelo_ValidaOpcion</a></div><div class="ttdeci">EXTERN int modelo_ValidaOpcion(char *opcion)</div><div class="ttdoc">La funcion modelo_ValidaOpcion valida si un string solo contiene valores nùmericos.</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a25ce90fbabc370be34f91e9251879d31"><div class="ttname"><a href="Peliculas_8h.html#a25ce90fbabc370be34f91e9251879d31">modelo_ImprimeUserDB</a></div><div class="ttdeci">EXTERN void modelo_ImprimeUserDB(float *Afinidades[], size_t filas, size_t columnas)</div><div class="ttdoc">La funcion modelo_ImprimeUserDB crearà un archivo CSV con los datos en la matriz de Afinidades.</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a2710cca8d792a5ef04aa096db611df33"><div class="ttname"><a href="Peliculas_8h.html#a2710cca8d792a5ef04aa096db611df33">modelo_AbreArchivo</a></div><div class="ttdeci">EXTERN FILE * modelo_AbreArchivo(char *nombre_archivo, char *modo)</div><div class="ttdoc">La funcion modelo_AbreArchivo, abrirà y regresarà el pointer a un file, asì mismo,...</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a27b4534030d076a82dfa5b9a8fed94c2"><div class="ttname"><a href="Peliculas_8h.html#a27b4534030d076a82dfa5b9a8fed94c2">DataShell</a></div><div class="ttdeci">EXTERN void DataShell(char *archivo, MATRIZ *Matriz)</div><div class="ttdoc">La funciòn DataShell() realiza las funciones previamente realizadas en la practica del DataShell.</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a27ba7311a5968a1425737d335e928a19"><div class="ttname"><a href="Peliculas_8h.html#a27ba7311a5968a1425737d335e928a19">modelo_ImprimeRanking</a></div><div class="ttdeci">EXTERN void modelo_ImprimeRanking(MATRIZ *RankingDB)</div><div class="ttdoc">La funcion modelo_ImprimeRanking imprimirà una representaciòn de la tabla RankingDB de los usuarios.</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a2eb8403aa1b735487474e6ced09009ca"><div class="ttname"><a href="Peliculas_8h.html#a2eb8403aa1b735487474e6ced09009ca">vista_MenuPeliculas</a></div><div class="ttdeci">EXTERN char * vista_MenuPeliculas(MATRIZ *COntenido)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a3e3499d85dc03585fa9715efd0d59828"><div class="ttname"><a href="Peliculas_8h.html#a3e3499d85dc03585fa9715efd0d59828">modelo_RecorreTXT</a></div><div class="ttdeci">EXTERN size_t modelo_RecorreTXT(FILE *archivo)</div><div class="ttdoc">La funcion modelo_RecorreTXT lee las lineas de los archivos UserNames.txt y MovieNames....</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a42514c2c2a6d33a86df94138fd93622c"><div class="ttname"><a href="Peliculas_8h.html#a42514c2c2a6d33a86df94138fd93622c">modelo_CreaUserDB</a></div><div class="ttdeci">EXTERN void modelo_CreaUserDB(TAMANO *dimensiones)</div><div class="ttdoc">La funcion modelo_UserDB crea un archivo con la nueva matriz de afinidades de los usuarios.</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a6a8490fd8740905ddc36f3aa604fe33b"><div class="ttname"><a href="Peliculas_8h.html#a6a8490fd8740905ddc36f3aa604fe33b">vista_ErrorEntrada</a></div><div class="ttdeci">EXTERN void vista_ErrorEntrada(int new_file, int retorno, char *despliegue)</div><div class="ttdoc">La funcion vista_ErrorEntrada mostarà un mensaje para cuando la entrada en el menù es incorrecta.</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a6ec7417723c27c9dccacf2f3e48f50f6"><div class="ttname"><a href="Peliculas_8h.html#a6ec7417723c27c9dccacf2f3e48f50f6">modelo_Error</a></div><div class="ttdeci">EXTERN float modelo_Error(float *prediccion, MATRIZ *Rating, int user, int item)</div><div class="ttdoc">La funcion modelo_Error calcula el error generado por la predicciòn del sistema.</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a752acdd43590dcb7103e7355a7e6de1f"><div class="ttname"><a href="Peliculas_8h.html#a752acdd43590dcb7103e7355a7e6de1f">modelo_IniciaUserDB</a></div><div class="ttdeci">EXTERN float * modelo_IniciaUserDB(size_t columnas, float *buffer)</div><div class="ttdoc">La funcion modelo_IniciaUserDB inicializarà de forma aleatoria la matriz de afinidades de los usuario...</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a77366c1bd428629dc898e188bfd182a3"><div class="ttname"><a href="Peliculas_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a></div><div class="ttdeci">#define EXTERN</div><div class="ttdef"><b>Definition:</b> Peliculas.h:33</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a7e553753feef3bd9afb9a48fdc73a640"><div class="ttname"><a href="Peliculas_8h.html#a7e553753feef3bd9afb9a48fdc73a640">modelo_DespliegaPeliculas</a></div><div class="ttdeci">EXTERN void modelo_DespliegaPeliculas(MATRIZ *Ranking, char *opcion)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a84d747b49a8226961790c77a9d0037f4"><div class="ttname"><a href="Peliculas_8h.html#a84d747b49a8226961790c77a9d0037f4">MATRIZ</a></div><div class="ttdeci">struct matriz_struct MATRIZ</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a8f57b6d65241c96b1fd53d8090288f5f"><div class="ttname"><a href="Peliculas_8h.html#a8f57b6d65241c96b1fd53d8090288f5f">modelo_DeterminaTamano</a></div><div class="ttdeci">EXTERN void modelo_DeterminaTamano(TAMANO *dimensiones)</div><div class="ttdoc">La funcion modelo_DeterminaTamano devolverà la cantidad de lineas de un archivo dado....</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a9329df103883b2c93c4bf879e76dfae7"><div class="ttname"><a href="Peliculas_8h.html#a9329df103883b2c93c4bf879e76dfae7">modelo_DotSugerencia</a></div><div class="ttdeci">EXTERN void modelo_DotSugerencia(MATRIZ *User, float *usuario, int user, char *opcion)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a94167de58c3dd86bd6b700fa1b0413d3"><div class="ttname"><a href="Peliculas_8h.html#a94167de58c3dd86bd6b700fa1b0413d3">vista_Menu</a></div><div class="ttdeci">EXTERN void vista_Menu(int new_file)</div><div class="ttdoc">La funcion vista_Menu es la funciòn inicial que darà la bienvenida y comenzara el programa.</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a954f34fb50836d59d64fd72f8bb61796"><div class="ttname"><a href="Peliculas_8h.html#a954f34fb50836d59d64fd72f8bb61796">modelo_DotRecomendacion</a></div><div class="ttdeci">EXTERN void modelo_DotRecomendacion(MATRIZ *Ranking, float *usuario, MATRIZ *Contenido, int user, char *opcion)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_a9f434712706698ae2ad65dcf3245bf4f"><div class="ttname"><a href="Peliculas_8h.html#a9f434712706698ae2ad65dcf3245bf4f">modelo_ObtenLinea</a></div><div class="ttdeci">EXTERN char * modelo_ObtenLinea(char *linea_leida, int index, char *nombre_archivo)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_aa04b411090cbe78c716e1fd2df9d10ca"><div class="ttname"><a href="Peliculas_8h.html#aa04b411090cbe78c716e1fd2df9d10ca">controlador_Proceso</a></div><div class="ttdeci">EXTERN void controlador_Proceso(int new_file, char *opcion)</div><div class="ttdoc">La funcion controlador_Proceso mantiene las funcionalidades, settea las variables y llama a las funci...</div></div>
+<div class="ttc" id="aPeliculas_8h_html_aa0aea1963907f9720fe2c796d5446cd3"><div class="ttname"><a href="Peliculas_8h.html#aa0aea1963907f9720fe2c796d5446cd3">vista_ErrorAperturaArchivo</a></div><div class="ttdeci">EXTERN void vista_ErrorAperturaArchivo(void)</div><div class="ttdoc">La funcion vista_Error_Apertura_Archivo mostrarà un mensaje de error indicando que deberìa hacer para...</div></div>
+<div class="ttc" id="aPeliculas_8h_html_aa3de82ca6e8c55025cad8ad6bb1d96ae"><div class="ttname"><a href="Peliculas_8h.html#aa3de82ca6e8c55025cad8ad6bb1d96ae">vista_MenuDespliegue</a></div><div class="ttdeci">EXTERN char * vista_MenuDespliegue(void)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_aca725b3ab1891ccd79086eccf10404b1"><div class="ttname"><a href="Peliculas_8h.html#aca725b3ab1891ccd79086eccf10404b1">vista_MenuRecomendacion</a></div><div class="ttdeci">EXTERN char * vista_MenuRecomendacion(MATRIZ *Usuario, int modo)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_ad85c549960b41c53250c5a05e97f9a81"><div class="ttname"><a href="Peliculas_8h.html#ad85c549960b41c53250c5a05e97f9a81">vista_MenuEpocas</a></div><div class="ttdeci">EXTERN char * vista_MenuEpocas(void)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_ae26e6d1c588c9892172ca6974e9dfb38"><div class="ttname"><a href="Peliculas_8h.html#ae26e6d1c588c9892172ca6974e9dfb38">modelo_CalculaPromedio</a></div><div class="ttdeci">EXTERN float modelo_CalculaPromedio(MATRIZ *Ranking, int movie)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_ae81ed3c1a4c99ad900719109faa592ab"><div class="ttname"><a href="Peliculas_8h.html#ae81ed3c1a4c99ad900719109faa592ab">modelo_DespliegaUsuarios</a></div><div class="ttdeci">EXTERN void modelo_DespliegaUsuarios(MATRIZ *Ranking, char *opcion)</div></div>
+<div class="ttc" id="aPeliculas_8h_html_afa60bda0ac5d49bde59e5b715b55ac95"><div class="ttname"><a href="Peliculas_8h.html#afa60bda0ac5d49bde59e5b715b55ac95">TAMANO</a></div><div class="ttdeci">struct num_lineas TAMANO</div></div>
+<div class="ttc" id="aPeliculas_8h_html_afb04fa36650e19158d497e825ee40992"><div class="ttname"><a href="Peliculas_8h.html#afb04fa36650e19158d497e825ee40992">modelo_DotSimilares</a></div><div class="ttdeci">EXTERN void modelo_DotSimilares(MATRIZ *Content, int movie, char *opcion)</div></div>
+<div class="ttc" id="astructmatriz__struct_html"><div class="ttname"><a href="structmatriz__struct.html">matriz_struct</a></div><div class="ttdef"><b>Definition:</b> Peliculas.h:45</div></div>
+<div class="ttc" id="astructmatriz__struct_html_a057758c9e12259c6e257e4744c858e0c"><div class="ttname"><a href="structmatriz__struct.html#a057758c9e12259c6e257e4744c858e0c">matriz_struct::columnas</a></div><div class="ttdeci">size_t columnas</div><div class="ttdef"><b>Definition:</b> Peliculas.h:47</div></div>
+<div class="ttc" id="astructmatriz__struct_html_a8c223517db20fbc336fd853b26f8c232"><div class="ttname"><a href="structmatriz__struct.html#a8c223517db20fbc336fd853b26f8c232">matriz_struct::filas</a></div><div class="ttdeci">size_t filas</div><div class="ttdef"><b>Definition:</b> Peliculas.h:48</div></div>
+<div class="ttc" id="astructmatriz__struct_html_ad19a4db4a3fca25418d490625a9961d4"><div class="ttname"><a href="structmatriz__struct.html#ad19a4db4a3fca25418d490625a9961d4">matriz_struct::Datos</a></div><div class="ttdeci">float * Datos[BUFSIZ]</div><div class="ttdef"><b>Definition:</b> Peliculas.h:46</div></div>
+<div class="ttc" id="astructnum__lineas_html"><div class="ttname"><a href="structnum__lineas.html">num_lineas</a></div><div class="ttdef"><b>Definition:</b> Peliculas.h:40</div></div>
+<div class="ttc" id="astructnum__lineas_html_a44fc685face2cc64217ef1004cabff23"><div class="ttname"><a href="structnum__lineas.html#a44fc685face2cc64217ef1004cabff23">num_lineas::filas</a></div><div class="ttdeci">size_t filas</div><div class="ttdef"><b>Definition:</b> Peliculas.h:42</div></div>
+<div class="ttc" id="astructnum__lineas_html_a4ca5efcbb4ce4f50c61c852f68d52f89"><div class="ttname"><a href="structnum__lineas.html#a4ca5efcbb4ce4f50c61c852f68d52f89">num_lineas::columnas</a></div><div class="ttdeci">size_t columnas</div><div class="ttdef"><b>Definition:</b> Peliculas.h:41</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0
+</small></address>
+</body>
+</html>

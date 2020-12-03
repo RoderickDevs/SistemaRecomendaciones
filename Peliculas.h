@@ -1,9 +1,9 @@
-//
+/**
 //  Peliculas.h
 //  
 //
 //  Creado por Rodrigo Garcia Diaz y Jesus Enrique Domìnguez el 21 de Noviembre del 2020.
-//
+*/
 
 #ifndef Peliculas_h
 #define Peliculas_h
@@ -55,12 +55,13 @@ typedef struct matriz_struct{
 /* Function prototypes. */
 
 
-/*
+/**
  *
+ * @brief
  * La funcion controlador_Proceso mantiene las funcionalidades, settea las variables y llama a las funciones
  * determinadas en momentos adecuadas para la continuidad del programa.
  *
- * @params
+ * @param
  *      new_file (int):
          Este valor determina si se usarà una UserDB existente o si crearà una nueva mediante el comando '-new'
         
@@ -72,12 +73,13 @@ typedef struct matriz_struct{
 EXTERN void controlador_Proceso(int new_file, char * opcion);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion vista_Menu es la funciòn inicial que darà la bienvenida y comenzara el programa
  * 
  *
- * @params
+ * @param
  *      new_file (int):
          Este valor determina si se usarà una UserDB existente o si crearà una nueva mediante el comando '-new'
         
@@ -89,12 +91,13 @@ EXTERN void controlador_Proceso(int new_file, char * opcion);
 EXTERN void vista_Menu(int new_file);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_IniciaUserDB inicializarà de forma aleatoria la matriz de afinidades de los usuarios con las categorias
  * presentes en Categorias.txt. Este proceso solo se harà al iniciar por primera vez el algoritmo.
  *
- * @params
+ * @param
  *      columnas (size_t):
          tamaño de columnas para crear el array
  *      buffer (float *)
@@ -108,12 +111,13 @@ EXTERN void vista_Menu(int new_file);
 EXTERN float * modelo_IniciaUserDB(size_t columnas, float * buffer);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_Prediccion calcula el intento inicial entre P[user] y Q[item].
  * 
  *
- * @params
+ * @param
  *      Q_Item (MATRIZ *):
          ContentDB
  *      P_user (float *):
@@ -129,12 +133,13 @@ EXTERN float * modelo_IniciaUserDB(size_t columnas, float * buffer);
 EXTERN float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_Error calcula el error generado por la predicciòn del sistema.
  * 
  *
- * @params
+ * @param
  *      Rating (MATRIZ *):
          RankingDB
  *      P_user (float *):
@@ -152,12 +157,13 @@ EXTERN float modelo_Prediccion(float * P_user, MATRIZ * Q_item, int index);
 EXTERN float modelo_Error(float * prediccion, MATRIZ * Rating, int user, int item);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_ImprimeUserDB crearà un archivo CSV con los datos en la matriz de Afinidades.
  * 
  *
- * @params
+ * @param
  *      columnas (size_t):
          tamaño de columnas para imprimir la matriz en el archivo
  *      Afinidades[] (float *)
@@ -171,12 +177,13 @@ EXTERN float modelo_Error(float * prediccion, MATRIZ * Rating, int user, int ite
 EXTERN void modelo_ImprimeUserDB(float * Afinidades[], size_t filas, size_t columnas);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_DeterminaTamano devolverà la cantidad de lineas de un archivo dado. Con esto, se podrà determinar cuantos nùmeros
  * aleatorios se eben ingresar
  *
- * @params
+ * @param
  *      dimensiones (TAMANO *)
         
  * @returns
@@ -187,11 +194,12 @@ EXTERN void modelo_ImprimeUserDB(float * Afinidades[], size_t filas, size_t colu
 EXTERN void modelo_DeterminaTamano(TAMANO * dimensiones);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_ImprimeRanking imprimirà una representaciòn de la tabla RankingDB de los usuarios.
  *
- * @params
+ * @param
  *      RankingDB (MATRIZ *)
         
  * @returns
@@ -202,11 +210,12 @@ EXTERN void modelo_DeterminaTamano(TAMANO * dimensiones);
 EXTERN void modelo_ImprimeRanking(MATRIZ * RankingDB);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion  modelo_ValidaOpcion valida si un string solo contiene valores nùmericos.
  *
- * @params
+ * @param
  *      opcion (char *)
         
  * @returns
@@ -217,12 +226,13 @@ EXTERN void modelo_ImprimeRanking(MATRIZ * RankingDB);
 EXTERN int modelo_ValidaOpcion(char * opcion);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_AbreArchivo, abrirà y regresarà el pointer a un file, asì mismo, validarà si la apertura fue correcta o no,
  * indicando si exitio algùn problema.
  *
- * @params
+ * @param
  *      nombre_archivo (char *)
         
  * @returns
@@ -233,12 +243,13 @@ EXTERN int modelo_ValidaOpcion(char * opcion);
 EXTERN FILE * modelo_AbreArchivo(char * nombre_archivo, char * modo);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_RecorreTXT lee las lineas de los archivos UserNames.txt y MovieNames.txt para determinar el tamaño de la matriz a crear
  * 
  *
- * @params
+ * @param
  *      archivo (FILE *):
          archivo a recorrer.
  *      dimensiones (TAMANO *)
@@ -252,12 +263,13 @@ EXTERN FILE * modelo_AbreArchivo(char * nombre_archivo, char * modo);
 EXTERN size_t modelo_RecorreTXT(FILE * archivo);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_UserDB crea un archivo con la nueva matriz de afinidades de los usuarios
  * 
  *
- * @params
+ * @param
  *      dimensiones (TAMANO *)
          variable para determinar los tamaños de la matriz nueva
         
@@ -285,12 +297,13 @@ EXTERN void modelo_DotSimilares(MATRIZ * Content, int movie, char * opcion);
 EXTERN void modelo_GraficaError(char * archivo);
 
 
-/*
+/**
  *
+ * @brief
  * La funciòn DataShell() realiza las funciones previamente realizadas en la practica del DataShell
  * 
  *
- * @params
+ * @param
  *      archivo (char *):
          archivo de dònde obtener los datos para llenar las matrices.
         
@@ -302,11 +315,12 @@ EXTERN void modelo_GraficaError(char * archivo);
 EXTERN void DataShell(char * archivo, MATRIZ * Matriz);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion vista_Error_Apertura_Archivo mostrarà un mensaje de error indicando que deberìa hacer para corregirlo.
  *
- * @params
+ * @param
  *     none
  * @returns
         none
@@ -316,11 +330,12 @@ EXTERN void DataShell(char * archivo, MATRIZ * Matriz);
 EXTERN void vista_ErrorAperturaArchivo(void);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion vista_ErrorEntrada mostarà un mensaje para cuando la entrada en el menù es incorrecta.
  *
- * @params
+ * @param
  *     none
  * @returns
         none

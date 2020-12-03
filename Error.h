@@ -1,9 +1,9 @@
-//
+/**
 //  Error.h
 //  
 //
 //  Creado por Rodrigo Garcia Diaz y Jesus Enrique Domìnguez el 21 de Noviembre del 2020.
-//
+*/
 
 #ifndef Error_h
 #define Error_h
@@ -41,12 +41,13 @@
 /* Function prototypes. */
 
 
-/*
+/**
  *
+ * @brief
  * La funcion controlador_errores inserta el nuevo error a un archvio 
  * que contiene los errores anteriores.
  *
- * @params
+ * @param
  *      error (float):
          Es el valor del error actual para insertar en el archivo
         
@@ -58,8 +59,9 @@
 EXTERN void controlador_errores(int main, float error, char * modo);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion controlador_errorpromedio calcula el error promedio 
  * del archivo error.r
  *

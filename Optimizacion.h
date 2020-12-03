@@ -1,9 +1,9 @@
-//
+/*
 //  Optimizacion.h
 //  
 //
 //  Creado por Rodrigo Garcia Diaz y Jesus Enrique Domínguez el 26 de Noviembre del 2020.
-//
+*/
 
 #ifndef Optimizacion_h
 #define Optimizacion_h
@@ -42,12 +42,13 @@
 /* Function prototypes. */
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_optimizacion_content obtiene los nuevos verctores optimizados 
  * para los items, regresa el vector correspondiente.
  *
- * @params
+ * @param
  *      user (*float):
          Vector particular de valores desde la matriz de userdb
 
@@ -71,12 +72,13 @@
 EXTERN float *modelo_optimizacion_content(float *user, float *content, size_t size, float n, float riu);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion modelo_optimizacion_content obtiene los nuevos verctores optimizados 
  * para el user, regresa el vector correspondiente.
  *
- * @params
+ * @param
  *      user (*float):
          Vector particular de valores desde la matriz de userdb
 
@@ -100,12 +102,13 @@ EXTERN float *modelo_optimizacion_content(float *user, float *content, size_t si
 EXTERN void modelo_optimizacion_user(MATRIZ * User,  MATRIZ * Content, size_t user_index, size_t movie, float error, long double n);
 
 
-/*
+/**
  *
+ * @brief
  * La funcion controlador_transpuesta obtiene los nuevos verctores que convierten una  
  * columna a su transpuesta. Regresa el vector de tipo float
  *
- * @params
+ * @param
  *      matriz (*MATRIZ):
          estrictura con matriz y dimensiones
 
